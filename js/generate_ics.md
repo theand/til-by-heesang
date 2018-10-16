@@ -69,7 +69,7 @@ const eventsAll = days.map( (day, i) => {
         description: 'some description',
     };
 
-    #하루하루에 대한 ics 파일 생성
+    //하루하루에 대한 ics 파일 생성
     ics.createEvent(calEvent, (error, value) => {
         if (error) {
             console.error(error);
@@ -85,7 +85,7 @@ const eventsAll = days.map( (day, i) => {
 const eventsMine = eventsAll.filter( e => e.title.startsWith(mine));
 
 
-#전체 일정을 모두 담은 ics 파일 생성
+//전체 일정을 모두 담은 ics 파일 생성
 ics.createEvents(eventsAll, (error, value) => {
     if (error) {
         console.error(error);
@@ -95,7 +95,7 @@ ics.createEvents(eventsAll, (error, value) => {
 });
 
 
-#내가 담당인 전체 일정만 담은  ics 파일 생성
+//내가 담당인 전체 일정만 담은  ics 파일 생성
 ics.createEvents(eventsMine, (error, value) => {
     if (error) {
         console.error(error);

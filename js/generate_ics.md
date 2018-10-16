@@ -13,17 +13,17 @@
 ## 설치 및 사용법
 
 - 설치 : `npm install -S ics`
--
+
 
 ## 케이스1 : 이벤트 하나 짜리 ics 만들기
 
-`ics.createEvent` 을 쓰면 된다.
+`ics.createEvent` 을 쓰면 된다. 자세한건 readme 참고.
 
-## 케이스2 : 이벤트 하나 짜리 ics 만들기
+## 케이스2 : 여러 이벤트를 하나의 ics 에 담아서 만들기
 
 - 만들어진 ics 파일을 `cat * > ../all.ics ` 이렇게 합쳤더니.. fantastical 에서는 import 가 되는데 기본 달력앱이나 구글 캘린더에서는 import 가 안 되더라.
 - 파일을 뜯어보니 하나의 ics 파일은 BEGIN END 가 중첩이 되어 있었다.
-  - 가장 바깥 블록에서 `VCALENDAR` 를 BEGIN-END 하고, 그 안에 이벤트 하나 단위로 `VEVENT` 블록이 BEGIN-END 해야하므로, 단일 ics 파일을 단순병합하면 VCALENDAR 블록이 여러개 생겨서 포맷에 맞지 않음.
+  - 가장 바깥 블록에서 `VCALENDAR` 를 BEGIN-END 하고, 그 안에 이벤트 하나 단위로 `VEVENT` 블록이 BEGIN-END 해야하므로, 단일 ics 파일을 단순병합하면 VCALENDAR 블록이 여러개 생겨서 이걸 파싱할 수 있는 앱과 그렇지 않은 앱이 차이가 생김.
   - 자세한건 https://en.wikipedia.org/wiki/ICalendar 참고.
 - 모듈에서 멀티 이벤트 제공한다고 나왔는데, 계속 에러가 나서 한참 헤매다보니 멀티 이벤트 생성은 `ics.createEvents` 로 s가 하나 더 붙었어야하는거였음.
 

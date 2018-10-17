@@ -50,10 +50,6 @@ console.log(pair("v1", "v2"));
 
 그런데 객체는 리턴하게 됐지만 key 가 원하는대로 다이나믹하게 들어가지 않는다.
 
-
-
-객체 키가 동적으로 들어가지 않는다.
-
 찾아보면 ES2015 의 Object initializer 에 computed property name syntax 가 들어왔다.
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015

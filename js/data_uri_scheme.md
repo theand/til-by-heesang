@@ -21,7 +21,7 @@ ics 를 넣고자 한다면
 data:text/calendar,<data>
 ```
 
-data 부분을 base64 인코딩했으면 `;base64` 라는 구문이 들어가야하고, text 인 경유에는 base64 할 필요는 없이 `encodeURIComponent()` 로 인코딩해서 넣으면 된다.
+data 부분을 base64 인코딩했으면 `;base64` 라는 구문이 들어가야하고, text 인 경우에는 base64 할 필요는 없이 `encodeURIComponent()` 로 인코딩해서 넣으면 된다.
 
 그리고 `<data>` 영역 앞에 `,` 를 빼먹으면 안됨.
 

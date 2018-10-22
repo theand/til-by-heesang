@@ -48,3 +48,7 @@ for(let d of dateIterator){
     console.log(d.format(moment.HTML5_FMT.DATE));
 }
 ```
+
+참고로 `moment-range` 에서 구현한 사항은 다음 링크에서 확인할 수 있는데, generator가 아니라 iterator 로 구현한 것으로 보인다.
+
+https://github.com/rotaready/moment-range/blob/master/lib/moment-range.js

@@ -16,7 +16,7 @@ function* gen() {
 }
 ```
 
-`function*` 문법이 새로 들어왔고, `yield` 키워드를 통해 generator object를 리턴한다. 이터레이터에서 `.next()` 를 통해 값과 상태를 얻을 수 있는데, iterable protocol을 만족하는 개체여서 `for..of` 로 쓸수도 있다.
+`function*` 문법이 새로 들어왔고, `yield` 키워드를 통해 generator object를 리턴한다. 그 객체에서 `.next()` 를 통해 값과 상태를 얻을 수 있는데, iterable protocol을 만족하는 객체여서 `for..of` 구문으로 순회할 수 있다.
 
 참고
 

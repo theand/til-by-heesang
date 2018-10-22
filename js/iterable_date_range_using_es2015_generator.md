@@ -1,8 +1,6 @@
 
 # ES2015의 generator를 이용한 date range
 
-ES2015에 generator 를 간단히 맛보자.
-
 ES2015의 제너레이터를 간략히 문서를 읽어보았다. 지난주에 사용했던 `moment-range` 모듈에서 내가 필요했던 간단한 기능 정도는 다시 만들 수 있을 것 같았다.
 
 

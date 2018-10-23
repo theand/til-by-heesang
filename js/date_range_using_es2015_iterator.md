@@ -48,7 +48,7 @@ const moment_daterange = function (start, end) {
 
 const dateIterator = moment_daterange(start, end);
 
-let result = dateIterator.next()
+let result = dateIterator.next();
 while (!result.done) {
     console.log(result.value.format(moment.HTML5_FMT.DATE));
     result = dateIterator.next();

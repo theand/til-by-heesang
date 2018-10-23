@@ -33,8 +33,8 @@ const moment_daterange = function (start, end) {
 
     return {
         next: () => {
-            if (!start.isAfter(end)) {
-                const ret = next;
+            if (!next.isAfter(end)) {
+                const ret = next.clone();
                 next.add(1, 'd');
                 return {value: ret, done: false}
             } else {
@@ -44,6 +44,7 @@ const moment_daterange = function (start, end) {
         }
     };
 };
+
 
 const dateIterator = moment_daterange(start, end);
 

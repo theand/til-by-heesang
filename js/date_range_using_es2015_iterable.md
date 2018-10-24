@@ -75,9 +75,6 @@ for(let d of dateIterator){
 }
 
 
-const dateArray = [...moment_daterange(start, end)];
-console.log(dateArray);
-
 ```
 
 하나씩 개별적으로 알아본 iterator, iterable, generator 의 관계에 대한 정리는 내일 하도록 하자.

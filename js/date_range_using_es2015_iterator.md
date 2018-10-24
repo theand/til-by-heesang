@@ -38,7 +38,6 @@ const moment_daterange = function (start, end) {
                 next.add(1, 'd');
                 return {value: ret, done: false}
             } else {
-                finished = true;
                 return {value: undefined, done: true};
             }
         }

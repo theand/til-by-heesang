@@ -46,3 +46,24 @@ ics.createEvent(calEvent, (error, value) => {
     }
 });
 ```
+
+추가.
+
+나중에 a 요소 생성하는 부분은 다음과 같이 바꾸었다. (의존성 있음)
+
+```javascript
+ics.createEvent(calEvent, (error, value) => {
+    if (error) {
+        console.error(error);
+    } else {
+        const uriContent = "data:text/calendar," + encodeURIComponent(value);
+
+        const downloadLink = `
+        <a href="${uriContent}" download="${title}.ics" class="msg-button msg-button--clickable">download ics</a>
+        `;
+
+        const insertHere = document.querySelector(".msg-button");
+        insertHere.parentNode.insertBefore(userscript_util.html.htmlToElement(downloadLink), insertHere);
+    }
+});
+```

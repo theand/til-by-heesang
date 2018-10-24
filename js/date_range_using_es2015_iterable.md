@@ -7,6 +7,7 @@ iterable protocol은 객체를 `for..of` 같은 구문에서 사용할 수 있�
 요약하자면, iterable 은
 
 - 객체를 `for .. of` 구문을 통해 순회할 수 있게 해준다.
+- spread operator (`...`) 에서도 쓸 수 있게 해준다.
 - `Symbol.iterator` 메소드를 구현하면 되고, 이 메소드에서는 iterator 를 만들어서 리턴한다.
 
 
@@ -51,6 +52,10 @@ const dateIterator = moment_daterange(start, end);
 for(let d of dateIterator){
     console.log(d.format(moment.HTML5_FMT.DATE));
 }
+
+
+const dateArray = [...moment_daterange(start, end)];
+console.log(dateArray);
 
 ```
 

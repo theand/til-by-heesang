@@ -3,11 +3,11 @@
 
 generator 로 date range를 만들어봤는데, 그렇다면 iterator 랑은 무슨 차이인가 싶어서 만들어봄.
 
-Iterator는 어떤 시퀀스를 정의하여 값을 돌려주는, iterator 프로토콜을 만족하는 객체를 말한다.
+iterator는 어떤 시퀀스를 정의하여 값을 돌려주는, iterator 프로토콜을 만족하는 객체를 말한다.
 
-Iterator 프로토콜은 `.next()` 메소드를 구현하면 되고, `.next()` 메소드는 `done`과 `value`로 시퀀스의 완료여부와 값을 담은 객체를 리턴하면 된다.
+iterator 프로토콜은 `.next()` 메소드를 구현하면 되고, `.next()` 메소드는 `done`과 `value`로 시퀀스의 완료여부와 값을 담은 객체를 리턴하면 된다.
 
-Iterator 객체는 명시적으로 `.next()` 를 호출하며 순회해야 한다. for of 같은데서 쓰려면 Iterable protocol을 구현해야 한다.
+iterator 객체는 명시적으로 `.next()` 를 호출하며 순회해야 한다. for of 같은데서 쓰려면 Iterable protocol을 구현해야 한다.
 
 간단히는 이렇게 볼 수 있고, iterable과 `Symbol.iterator` 에 대해서는 내일 알아보자.
 

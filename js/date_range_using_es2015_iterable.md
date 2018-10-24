@@ -11,6 +11,28 @@ iterable protocol은 객체를 `for..of` 같은 구문에서 사용할 수 있�
 - `Symbol.iterator` 메소드를 구현하면 되고, 이 메소드에서는 iterator 를 만들어서 리턴한다.
 
 
+대략적인 코드 틀은 이러게 나온다고 보면 될 것 같다.
+
+```javascript
+
+const anIterable = {
+  //some codes
+  [Symbol.iterator]() {
+    return {
+      next() {
+        //some codes
+        return {
+          value: //some value,
+          done: //true/false
+        }
+      }
+    };
+  }
+};
+```
+
+iterable 까지 보고 나니, moment-range 의 이 코드가 이해가 되었다. https://github.com/rotaready/moment-range/blob/master/lib/moment-range.js#L61
+
 참고
 
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators

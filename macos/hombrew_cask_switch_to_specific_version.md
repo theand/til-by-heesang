@@ -27,7 +27,7 @@ GUI 프로그램들도 왠만하면 brew cask로 설치하고 업그레이드를
   git log master -- Casks/sourcetree.rb
   ```
 - 이전 버전의 커밋 아이디를 확인함. `0de7223a346dac65c804c2c43357cf6ca1d1ccd6`
-- 터미널에서 커맨드로 커밋 정보f 보는게 생각나지 않아서 [깃헙에서 커밋 아이디로 들어감](https://github.com/Homebrew/homebrew-cask/commit/0de7223a346dac65c804c2c43357cf6ca1d1ccd6)
+- 터미널에서 커맨드로 커밋 정보 보는게 생각나지 않아서 [깃헙에서 커밋 아이디로 들어감](https://github.com/Homebrew/homebrew-cask/commit/0de7223a346dac65c804c2c43357cf6ca1d1ccd6)
 - `2.7.6a` 의 정보를 확인하여 아까 열어둔 cask file 에 입력.
 - `brew cask intall sourcetree` 실패  : `version`, `sha256` 키의 값만 바꾸었는데, 2.x와 3.x 사이에 [url 패턴이 바뀌어서](https://github.com/Homebrew/homebrew-cask/commit/76362053c76649cd5b9271e35347c0732e651a24) 파일을 다운로드 받지 못한 것으로 `url` 키의 값도 2.x에 맞게 바꿔줌.
 - `brew cask uninstall --force sourcetree; brew cask install sourcetree` : 이전 버전 찌꺼기들도 제거하고 재설치하도록 했고 완료.

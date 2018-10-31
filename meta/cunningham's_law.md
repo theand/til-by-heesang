@@ -1,3 +1,6 @@
+# 커닝햄의 법칙
+
+>the best way to get the right answer on the internet is not to ask a question; it's to post the wrong answer.
 
 >인터넷에서 제대로 된 답을 얻는 방법은, 질문을 하는게 아니라 잘못된 답을 올려놓는 것이다.
 

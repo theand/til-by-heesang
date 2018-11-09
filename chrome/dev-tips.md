@@ -61,3 +61,14 @@ source : https://umaar.com/dev-tips/141-quick-open-menu-snippets/
 source : https://umaar.com/dev-tips/98-command-menu/
 
 비고 : 프론트엔드 개발을 헤비하기 할때 마우스 사용하지 않고 단축키 위주로 많은 것을 실행할 수 있는 것 같은데.. 그정도까지 헤비하게 해본적은 없는 것 같다. 라이브코딩 같은거 할때 동선 짜놓기에는 좋을지도 모르겠다.
+
+## 디버깅할때 블랙박스로 취급해서 무시할 파일 설정하기
+
+요약 :  `Sources` 탭에서 블랙박스 처리할 파일 연 다음에 코드영역에서 우클릭하고 `Blackbox script` 메뉴 클릭.
+
+source :
+
+https://umaar.com/dev-tips/128-blackboxing/
+https://plus.google.com/+UmarHansa/posts/2m8yF7aFonn
+
+비고 : 디버깅할때 step in, step out 같은거 하다가 jquery 같은거 소스로 들어가면 피곤한데, 블랙박스 처리하면 그걸 막아줌.

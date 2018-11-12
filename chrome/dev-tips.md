@@ -72,3 +72,36 @@ https://umaar.com/dev-tips/128-blackboxing/
 https://plus.google.com/+UmarHansa/posts/2m8yF7aFonn
 
 비고 : 디버깅할때 step in, step out 같은거 하다가 jquery 같은거 소스로 들어가면 피곤한데, 블랙박스 처리하면 그걸 막아줌.
+
+## 개발자도구 독 위치 전환 단축키
+
+요약 : `cmd+shift+D` 최근 2개 상태를 토글한다.
+
+source : https://umaar.com/dev-tips/19-dock-undock-shortcut/
+
+비고 : 예전에 자주 쓰다가 요샌 까먹었는데 다시 리마인드.
+
+
+## 현재 선택한 단어의 다음 탐색
+
+요약 : 커서가 위치해있거나 선택된 단어로 다음에 나타나는 위치 검색
+
+source : https://twitter.com/umaar/status/483787965903413248
+
+비고 : 서브라임텍스트에서의 단축키처럼.
+
+## 요소 패널에서 DOM 노드 드래그해서 에디터로 밀어넣기
+
+요약 : 요소 패널에서 에디터 영역(브라우저 폼도 가능)으로 노드 드래그해서 넣으면 html 태그가 그대로 들어감.
+
+source : https://twitter.com/umaar/status/495268374642192384
+
+비고 : 아... 이걸 `edit as html`이나 `copy element` 같은걸 해서 클립보드로 넣은 다음에 붙여넣곤 했는데.. 이런 방법이.
+
+## 요소 패널의 스타일 영역에서 쓸만한 키보드 기능
+
+요약 : 프로퍼티나 값 자리에서 `백스페이스 엔터` - 해당 속선 선언 자체를 지워버림.
+
+source : https://umaar.com/dev-tips/61-styles-pane-keyboard-tricks/
+
+비고 : 체크박스 눌러서 토글하는거랑은 무슨 차이가 있으려나..

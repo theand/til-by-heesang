@@ -31,11 +31,11 @@ use console.log(JSON.parse(JSON.stringify(obj)));.
 
 예)
 
-![단순 console.log](./console.log simple.png)
+![단순 console.log](./console.log-simple.png)
 
 `a.b.c`에 2가 들어있는 `a` 객체를 그냥 로깅하면 `a.b`의 값은 생략되어 표시되는데, `a.b` 의 값을 3으로 바꿔 버린 다음에 위에서 로깅해놓았던 a객체의 생략했던 부분을 펼치면, 원래 로그를 찍었던 시점이 아니라 현재 시점의 `a.b`의 값이 보이고 대체로 이것은 원하는 작동이 아닐 것이다.
 
-![stringify console.log](./console.log stringify.png)
+![stringify console.log](./console.log-stringify.png)
 
 `a.b.c`에 2가 들어있는 `a` 객체를 stringify해서 로그를 남기면, 이때도 `a.b`의 값은 생략되어 보이지만, 로깅을 하고 나서 `a.b`의 값을 바꾸고 아까 생략된 부분을 펼쳐도 아까 로그 남긴 시점의 값이 제대로 보인다.
 

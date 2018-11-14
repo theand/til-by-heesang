@@ -105,3 +105,16 @@ source : https://twitter.com/umaar/status/495268374642192384
 source : https://umaar.com/dev-tips/61-styles-pane-keyboard-tricks/
 
 비고 : 체크박스 눌러서 토글하는거랑은 무슨 차이가 있으려나..
+
+
+## 네트웍 오버라이드로 프로덕션 사이트 수정하여 프로토타이핑 해보기
+
+요약 : 프로덕션 사이트의 소스를 배포하지 않고 프로토타이핑 적용해볼 수 있다. 다음 단계를 거치면 됨.
+
+- 소스 패널에서 `Overrides` 영역에서 `Select folder for Overrides` 를 선택하여 오버라이드할 파일이 저장될 경로를 지정.
+- 네트웍 패널에서 오버라이드하려는 리소스에서 우클릭하여 `Save for overrides` 하면 로컬에 소스가 저장되 수정할 수 있다.
+- 페이지를 리로드 해도 리모트 리소스가 아닌 로컬 리소스를 이용해서 로딩된다.
+
+source : https://umaar.com/dev-tips/162-network-overrides/
+
+비고 : 요소 탭에서 조금씩 조정하는건 페이지 로딩이 된 상태에서 적용되는 것이기도 하고 리로드 하면 리셋되는 단점을 보완할 수 있는 방법인듯.

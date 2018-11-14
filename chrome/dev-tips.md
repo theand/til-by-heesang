@@ -118,3 +118,9 @@ source : https://umaar.com/dev-tips/61-styles-pane-keyboard-tricks/
 source : https://umaar.com/dev-tips/162-network-overrides/
 
 비고 : 요소 탭에서 조금씩 조정하는건 페이지 로딩이 된 상태에서 적용되는 것이기도 하고 리로드 하면 리셋되는 단점을 보완할 수 있는 방법인듯.
+
+## 모든 네트웍 헤더와 컨텐트에서 검색하기
+
+요약 : 네트웍 패널에서 바로 보이는 검색창에서 검색하는 게 아니라 `cmd+f` 누르면 나오는 서치 영역에서 검색하면 헤더와 바디 모두에서 검색이 이루어짐.
+
+source : https://umaar.com/dev-tips/170-network-search/

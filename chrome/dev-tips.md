@@ -1,7 +1,7 @@
 
 # 크롬 개발자 도구 팁 정리
 
-https://umaar.com/dev-tips/ 를 보면서 내가 다시 쓸만한 기능들 정리.
+https://umaar.com/dev-tips/ 를 보면서 내가 다시 쓸만한 기능들 정리. (카나리에만 있는건 제외하고, 스테이블에 적용된 것 위주)
 
 
 ## DOM 트리 모두 펼치기
@@ -124,3 +124,30 @@ source : https://umaar.com/dev-tips/162-network-overrides/
 요약 : 네트웍 패널에서 바로 보이는 검색창에서 검색하는 게 아니라 `cmd+f` 누르면 나오는 서치 영역에서 검색하면 헤더와 바디 모두에서 검색이 이루어짐.
 
 source : https://umaar.com/dev-tips/170-network-search/
+
+
+## 네트웍 패널의 필터 검색에서 부정형 사용하기
+
+요약 : `-is:from-cache` 와 같이 `-` 을 붙이면 not 의 의미.
+
+유사 케이스
+
+- `-domain:tip.admintool.daum.net`
+- `-has-response-header:cache-control`
+
+source : https://twitter.com/umaar/status/804703313430278145
+
+비고 : 지원하는 필터 목록을 한번 찾아봐야겠다.
+
+## text-shadow 에디터
+
+요약 : 스타일 영역에서 `text-shadow` 프로퍼티의 값 왼쪽 아이콘을 클릭하면 컬러피커처럼  섀도우를 조절할 수 있는 에디터가 뜸.
+
+source : https://umaar.com/dev-tips/116-box-shadow-and-text-shadow-editor/
+
+
+## JS 디버깅할때 Never Pause Here
+
+요약 : `Pause on exceptions` 을 켜놓았을 경우 신경 쓸 필요 없는데서 브레이크가 걸려서 귀찮을 수 있는데, 그때 왼쪽 라인넘버 표시되는 영역에서 우클릭하고 `never pause here` 를 해놓으면 됨.
+
+source : https://umaar.com/dev-tips/127-never-pause-here/

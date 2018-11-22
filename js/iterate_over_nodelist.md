@@ -19,7 +19,7 @@ Array.isArray(document.querySelectorAll('pre'))
 보통 배열에서 많이 쓰는 방식으로 직관적으로 떠오르는 방식인데, 오래된 브라우저는 지원안하므로 주의.
 
 ```
-document.querySelectorAll('pre').forEach( (e) => somethind(e) );
+document.querySelectorAll('pre').forEach( (e) => something(e) );
 ```
 
 polyfill을 쓸수있기도 -> https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach

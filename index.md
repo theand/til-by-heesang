@@ -1,23 +1,24 @@
-Chrome
-====
-
-* [Dev Tips](./chrome/dev-tips.md)
-
 Macos
 ====
 
 * [Hombrew Cask Switch To Specific Version](./macos/hombrew_cask_switch_to_specific_version.md)
 * [Gtld For Local Test](./macos/gtld_for_local_test.md)
 
-Coding-Quiz
+Java
 ====
 
-* [Leetcode 001](./coding-quiz/leetcode_001.md)
+* [Read Safely Nested Object](./java/read_safely_nested_object.md)
 
-Meta
+Cli
 ====
 
-* [Cunningham'S Law](./meta/cunningham's_law.md)
+* [Case Insensitive Search In Less](./cli/case-insensitive-search-in-less.md)
+* [Top 10 Command From History](./cli/top_10_command_from_history.md)
+
+Chrome
+====
+
+* [Dev Tips](./chrome/dev-tips.md)
 
 Js
 ====
@@ -34,4 +35,19 @@ Js
 * [Use Npm Module On Browser](./js/use_npm_module_on_browser.md)
 * [Generate Link To Google Calendar Event Template](./js/generate_link_to_google_calendar_event_template.md)
 * [Date Range Using Es2015 Generator](./js/date_range_using_es2015_generator.md)
+
+Meta
+====
+
+* [Cunningham'S Law](./meta/cunningham's_law.md)
+
+Coding-Quiz
+====
+
+* [Leetcode 001](./coding-quiz/leetcode_001.md)
+
+Jetbrains
+====
+
+* [Intellij Default Tomcat Config](./jetbrains/intellij_default_tomcat_config.md)
 

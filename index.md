@@ -8,6 +8,7 @@ Java
 ====
 
 * [Read Safely Nested Object](./java/read_safely_nested_object.md)
+* [Gradle Jetty To Gretty](./java/gradle_jetty_to_gretty.md)
 
 Cli
 ====
@@ -44,7 +45,11 @@ Meta
 Coding-Quiz
 ====
 
+* [Adventofcode 2018 12 01 Part1](./coding-quiz/adventofcode_2018-12-01_part1.md)
 * [Leetcode 001](./coding-quiz/leetcode_001.md)
+* [Adventofcode 2018 12 01 Part2](./coding-quiz/adventofcode_2018-12-01_part2.md)
+* [Leetcode 007](./coding-quiz/leetcode_007.md)
+* [Adventofcode 2018 12 02 Part1](./coding-quiz/adventofcode_2018-12-02_part1.md)
 
 Jetbrains
 ====

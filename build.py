@@ -36,11 +36,11 @@ for dirpath, dirnames, filenames in os.walk('.'):
 indexfile = open("index.md", "w")
 
 # print out to index.md
-for category in dicts:
+for category in sorted(dicts.keys()):
     print(category, file=indexfile)
     print('====', file=indexfile)
     print('', file=indexfile)
-    for title in dicts[category]:
+    for title in sorted(dicts[category]):
         print("* [%s](%s)"  %( title , dicts[category][title]), file=indexfile)
     print('', file=indexfile)
 

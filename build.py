@@ -1,11 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 ## 사용법 : til 디렉토리에서 python build.py 를 실행하면 index.md 파일을 생성합니다.
 ## index.md에는 .md 확장자를 가진 파일들의 목록이 디렉토리별로 들어갑니다.
 
-from __future__ import unicode_literals
-from __future__ import print_function
+
+
 
 import os
 import os.path

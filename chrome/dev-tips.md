@@ -151,3 +151,9 @@ source : https://umaar.com/dev-tips/116-box-shadow-and-text-shadow-editor/
 요약 : `Pause on exceptions` 을 켜놓았을 경우 신경 쓸 필요 없는데서 브레이크가 걸려서 귀찮을 수 있는데, 그때 왼쪽 라인넘버 표시되는 영역에서 우클릭하고 `never pause here` 를 해놓으면 됨.
 
 source : https://umaar.com/dev-tips/127-never-pause-here/
+
+## $ 기호
+
+https://medium.com/@tomsu/devtools-tips-day-1-the-console-dollars-3aa0d93e923c
+
+jQuery 같이 `$` 변수를 이미 사용하고 있지 않다면, `$` 는 `document.querySelector` , `$$` 는 `document.querySelectorAll` 의 alias로 쓸 수 있다.

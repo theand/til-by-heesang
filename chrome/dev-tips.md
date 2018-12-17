@@ -152,8 +152,14 @@ source : https://umaar.com/dev-tips/116-box-shadow-and-text-shadow-editor/
 
 source : https://umaar.com/dev-tips/127-never-pause-here/
 
-## $ 기호
+## 콘솔에서 $ 기호
 
 https://medium.com/@tomsu/devtools-tips-day-1-the-console-dollars-3aa0d93e923c
 
-jQuery 같이 `$` 변수를 이미 사용하고 있지 않다면, `$` 는 `document.querySelector` , `$$` 는 `document.querySelectorAll` 의 alias로 쓸 수 있다.
+- jQuery 같이 `$` 변수를 이미 사용하고 있지 않다면, `$` 는 `document.querySelector` , `$$` 는 `document.querySelectorAll` 의 alias로 쓸 수 있다.
+
+- `$0`부터 `$4` 까지 : 요소 패널에서 선택한 html 노를 참조할 수 있다. 최근에 선택한 노드부터 0부터 4까지 할당된다. 그런고로, `$1.appendChild($0)` 와 같이 참조하여 작업할 수 있다.
+
+- `$_` : 마지막에 평가된 expression 의 결과값을 참조한다.
+
+- `$i` : 기본 기능은 아니고 [크롬확장](https://github.com/pd4d10/console-importer)을 설치한 상태에서, 콘솔에서 `$i` 를 쓸수 있게 되는데, cdnjs, unpkg 혹은 유효한 url 을 통해 js/css 를 바로 import 할 수 있다. 다만, CSP가 적용된 사이트에서는 작동하지 않는다.

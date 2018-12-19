@@ -5,7 +5,7 @@
 
 레거시 코드를 변경하다보니
 
-```
+```java
 if (HttpServletResponse.SC_OK == respCode){
 
 }
@@ -13,7 +13,7 @@ if (HttpServletResponse.SC_OK == respCode){
 
 위와 같은 코드가 있었고, 새 요구사항에서는 status code가 `207`이 오고 있었기에 위 코드는 작동하지 않았다. `HttpServletResponse` 에는 `207` 에 해당하는 상수가 없어서 일단 아래와 같이 하드코딩해서 작동만 확인함.
 
-```
+```java
 if (HttpServletResponse.SC_OK == respCode  || 207 == respCode) {
 
 }
@@ -31,7 +31,7 @@ spring의 `HttpStatus` 를 쓰는게 가장 간단한 것 같다.
 
 위의 코드는 아래와 같이 바꾸었다.
 
-```
+```java
 if (HttpStatus.valueOf(respCode).is2xxSuccessful()) {
 
 }

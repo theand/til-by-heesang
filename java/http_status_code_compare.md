@@ -37,7 +37,7 @@ if (HttpStatus.valueOf(respCode).is2xxSuccessful()) {
 }
 ```
 
-참고: 스프링 소스에서 최종적으로 `is2xxSuccessful()` 에서 어떻게 구분하는지는 찾아가보니, 결국에는 status code를 100으로 나누어서 1~5까지의 값으로 구분하고 있었다.
+참고: 스프링 소스에서 최종적으로 `is2xxSuccessful()` 에서 어떻게 구분하는지는 [찾아가보니](https://github.com/spring-projects/spring-framework/blob/master/spring-web/src/main/java/org/springframework/http/HttpStatus.java#L605), 결국에는 status code를 100으로 나누어서 1~5까지의 값으로 구분하고 있었다.
 
 ### 빠진 코드가 있는 이유는?
 

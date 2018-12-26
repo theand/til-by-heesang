@@ -12,7 +12,7 @@ f(0)=0, f(1)=100 으로 정의
 
 피보나치 함수 구현은 [로제타 코드](https://rosettacode.org/wiki/Fibonacci_sequence#Recursive_with_Memoization_4)에 있는 버전을 가져다 씀.
 
-코드
+## 코드
 ```ruby
 
 
@@ -56,7 +56,7 @@ end
 ```
 
 
-결과
+## 결과
 ```tsv
 결석일	acc_fixed	acc_fibo	acc_fibo_filtered	구간
 1	        1000	         100	         100	개이득

@@ -24,3 +24,14 @@ https://www.youtube.com/watch?v=m1jOWu7woKM
 
 - default path 는 그대로 두고, auxiliary concern 에서 해야할 일들을 callback 으로 등록해서 옆으로 치워놓았다가 필요할때만 세부사항을 확인할 수 있도록 한다.
 - 영상에서 살펴본 예제는, 베이스캠프에서 멘션을 남겼을때 벌어지는 일을 추적해들어간다. 컨트롤러로 입력이 들어와서 유저에게 응답이 나가는 것이 디폴트 패스이고, 멘션의 내용을 스캐닝해서 노티를 보내거나 보내지 않거나 하는 등의 작업을 auxiliary concern 으로 볼때, 이를 컨트롤러 코드에서 어떻게 다루고 콜백에서 어떻게 다루는지 보여주었다.
+
+# 03 - Using globals when the price is right
+
+https://www.youtube.com/watch?v=D7zUOtlpUPw
+
+- `Current`
+  https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html
+- `Concern`
+  https://api.rubyonrails.org/classes/ActiveSupport/Concern.html
+
+- 글로벌을 써야할때면 관리할 수 있게 써라.  `Current`는 per-request 속성을 전체 시스템에서 쉽게 접근할 수 있게 해준다.

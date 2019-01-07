@@ -8,7 +8,7 @@
 
 ![prod](./phase-prod.png)
 
-![sandbox](./prod-sandbox.png)
+![sandbox](./phase-sandbox.png)
 
 - 예전에는 [Stylebot](https://chrome.google.com/webstore/detail/stylebot/oiaejidbmkiecgbjeifoejpgmdaleoha)이라는 크롬확장을 통해, 도메인마다 지정하여 써오고 있었는데, 크롬확장보다 userscript가 메모리를 덜 먹을 듯 하여, 이번에 새로운 조직에 합류하여 업무를 시작하게 된 김에 userscript로 옮겨보았다.
 

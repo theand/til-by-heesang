@@ -35,3 +35,9 @@ https://www.youtube.com/watch?v=D7zUOtlpUPw
   https://api.rubyonrails.org/classes/ActiveSupport/Concern.html
 
 - 글로벌을 써야할때면 관리할 수 있게 써라.  `Current`는 per-request 속성을 전체 시스템에서 쉽게 접근할 수 있게 해준다.
+
+# 04 - Not every model is backed by a database
+
+https://www.youtube.com/watch?v=MQw9zF9IehI
+
+`Concern` 을 이용해서 액티브 레코드 모델에서 디비와 관계 없는 개념을 캡슐화해서 추출하기.

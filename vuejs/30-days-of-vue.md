@@ -32,3 +32,72 @@ new Vue({
   </body>
 </html>
 ```
+
+# 2019-01-12 : day 2 - THE VUE INSTANCE - DATA
+https://www.fullstack.io/30-days-of-vue/day-02-the-vue-instance---data/
+
+- THE VUE INSTANCE : vue 앱의 시작점. data 프로퍼티에 데이터를 바인딩 해두고 인스턴스에서 템플릿에서 사용할 수 있게 해준다.
+
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    greeting: 'Hello World!',
+  },
+});
+```
+
+```html
+<html>
+  <head>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <h2>{{ greeting }}</h2>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
+```
+
+- METHODS AND HANDLING EVENTS : data 프로퍼티에 있는 값은 reactive 하다. 뷰 인스턴스에 있는 값이 바뀌면 템플릿을 다시 렌더링해서 바뀐 값을 보여준다.
+
+```html
+<html>
+  <head>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <h2>{{ greeting }}</h2>
+      <button v-on:click="changeGreeting">
+        Change Greeting
+      </button>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
+```
+
+```javasctipt
+new Vue({
+  el: '#app',
+  data: {
+    greeting: 'Hello World!',
+  },
+  methods: {
+    changeGreeting() {
+      this.greeting = this.greeting === 'Hello World!' ?
+       'What is up!' :
+       'Hello World!';
+    }
+  }
+});
+```
+
+> When a Vue instance is instantiated, Vue recursively creates a series of getters and setters for each data property to make them reactive. Within an instance, the data object can then be accessed with this.$data. With proxying, Vue proxies all the properties of the instance so this.$data.greeting is equal to simply stating this.greeting

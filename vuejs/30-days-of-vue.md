@@ -101,3 +101,16 @@ new Vue({
 ```
 
 > When a Vue instance is instantiated, Vue recursively creates a series of getters and setters for each data property to make them reactive. Within an instance, the data object can then be accessed with this.$data. With proxying, Vue proxies all the properties of the instance so this.$data.greeting is equal to simply stating this.greeting
+
+
+# 2019-01-13 : day 3 - THE VUE INSTANCE - DATA DRIVEN APPLICATIONS
+
+https://www.fullstack.io/30-days-of-vue/day-03-the-vue-instance---data-driven-applications/
+
+- data : vue 인스턴스의 `data` 프로퍼티에 선언한 key-value 조합은 뷰 라이브러리가 알아서 getter, setter를 만들고 값의 변화를 추적해 변경사항이 있을떄 템플릿이 렌더링을 다시 하게 됨.
+
+- data driven application
+  - vanilla js 샘플 앱 : DOM 이 값의 근원이 됨. 값을 읽고 변경하기 위해 계속 DOM을 직접 읽고 써야함.
+  - vue js 샘플 앱 : vue 인스턴스의 data 프로퍼티가 값의 근원이 됨. DOM을 직접 읽고 쓰는 일이 거의 없음.
+
+- VUE DATA PROPERTIES : vue 인스턴스가 생성될될때 reactivity를 초기화하므로, 사용하려는 데이터를 미리 선언해놔야 한다. 이것 때문에, 이미 생성된 인스턴스에 프로퍼티를 직접 추가하거나 삭제할 수 없게 된다. (2019년에 나올 vue 3.0에서는 이게 가능해질 예정이라고 한다)

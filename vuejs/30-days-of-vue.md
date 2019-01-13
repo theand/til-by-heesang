@@ -103,7 +103,7 @@ new Vue({
 > When a Vue instance is instantiated, Vue recursively creates a series of getters and setters for each data property to make them reactive. Within an instance, the data object can then be accessed with this.$data. With proxying, Vue proxies all the properties of the instance so this.$data.greeting is equal to simply stating this.greeting
 
 
-# 2019-01-13 : day 3 - THE VUE INSTANCE - DATA DRIVEN APPLICATIONS
+# 2019-01-12 : day 3 - THE VUE INSTANCE - DATA DRIVEN APPLICATIONS
 
 https://www.fullstack.io/30-days-of-vue/day-03-the-vue-instance---data-driven-applications/
 
@@ -114,3 +114,35 @@ https://www.fullstack.io/30-days-of-vue/day-03-the-vue-instance---data-driven-ap
   - vue js 샘플 앱 : vue 인스턴스의 data 프로퍼티가 값의 근원이 됨. DOM을 직접 읽고 쓰는 일이 거의 없음.
 
 - VUE DATA PROPERTIES : vue 인스턴스가 생성될될때 reactivity를 초기화하므로, 사용하려는 데이터를 미리 선언해놔야 한다. 이것 때문에, 이미 생성된 인스턴스에 프로퍼티를 직접 추가하거나 삭제할 수 없게 된다. (2019년에 나올 vue 3.0에서는 이게 가능해질 예정이라고 한다)
+
+
+# 2019-01-13 : day 4 - VUE DIRECTIVES
+
+https://www.fullstack.io/30-days-of-vue/day-04-vue-directives/
+
+- `v-on` :  이벤트 리스너 생성. vue 인스턴스의 메소드를 트리거하거나 자바스크립트를 인라인으로 넣을 수 있다. 어느 native dom 에나 넣을 수 있다.
+- key modifier : 키보드 이벤트를 리스닝할때는 많이 쓰이는 키에 대해 미리 정의된 key modifier를 사용해 키코드를 체크할 수 있다. see https://vuejs.org/v2/guide/events.html#Key-Modifiers
+- `$event` : 이벤트 자체에 대한 세부 정보를 담은 객체를 참조할 수 있는 이름이다.
+- `v-bind` : HTML 요소의 text content에는 `{{ variable }}` 와 같은 식으로 데이터 값을 바인딩할 수 있지만, HTML attribute에는 그렇게 할 수 없고 `v-bind` 디렉티브를 사용해야 한다.
+- `v-if`, `v-show` : 어떤 표현식의 값에 따라 컨텐트를 렌더링할지 말지 결정할때 쓸 수 있는 디렉티브. `v-else` 와 `v-else-if` 디렉티브도 있다.
+  - `v-if` : true가 아니면 요소를 렌더링하지 않는다.
+  - `v-show` : 요소는 항상 렌더링되지만 css display 속성으로 show/hide를 제어한다.
+  - dom 요소가 굳이 존재해야할 필요가 없으면 보통 `v-if`를 선호하고, dom 요소가 굳이 존재해야할 필요가 있거나 토글이 자주 발생하는 경우에는 `v-show`가 적합하다.
+- shorthand syntax :
+  - `v-bind` -> `:`
+  - `v-on` -> `@`
+
+example
+```HTML
+<!-- the full syntax -->
+<img v-bind:src="dataProperty" />
+
+<!-- the shorthand syntax -->
+<img :src="dataProperty" />
+
+<!-- the full syntax -->
+<button v-on:click="methodName"></button>
+
+<!-- the shorthand syntax -->
+<button @click="methodName"></button>
+```

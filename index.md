@@ -7,6 +7,7 @@ Cli
 ====
 
 * [Case Insensitive Search In Less](./cli/case-insensitive-search-in-less.md)
+* [Readme](./cli/README.md)
 * [Top 10 Command From History](./cli/top_10_command_from_history.md)
 
 Coding-Quiz
@@ -17,17 +18,23 @@ Coding-Quiz
 * [Adventofcode 2018 12 02 Part1](./coding-quiz/adventofcode_2018-12-02_part1.md)
 * [Leetcode 001](./coding-quiz/leetcode_001.md)
 * [Leetcode 007](./coding-quiz/leetcode_007.md)
+* [Leetcode 009](./coding-quiz/leetcode_009.md)
+* [Leetcode 013](./coding-quiz/leetcode_013.md)
+* [Readme](./coding-quiz/README.md)
 
 Java
 ====
 
 * [Gradle Jetty To Gretty](./java/gradle_jetty_to_gretty.md)
+* [Http Status Code Compare](./java/http_status_code_compare.md)
 * [Read Safely Nested Object](./java/read_safely_nested_object.md)
+* [Spring Resttemplate Stringhttpmessageconverter Utf8](./java/spring_resttemplate_stringhttpmessageconverter_utf8.md)
 
 Jetbrains
 ====
 
 * [Intellij Default Tomcat Config](./jetbrains/intellij_default_tomcat_config.md)
+* [Intellij Scala Project](./jetbrains/intellij_scala_project.md)
 
 Js
 ====
@@ -45,6 +52,17 @@ Js
 * [Iterate Over Nodelist](./js/iterate_over_nodelist.md)
 * [Use Npm Module On Browser](./js/use_npm_module_on_browser.md)
 
+Lecture
+====
+
+* [Dhh On Writing Software Well](./lecture/dhh_on_writing_software_well.md)
+
+Lifehack
+====
+
+* [Readme](./lifehack/README.md)
+* [Year In Pixel](./lifehack/year-in-pixel.md)
+
 Macos
 ====
 
@@ -60,5 +78,25 @@ Python
 ====
 
 * [Get Sorted List](./python/get_sorted_list.md)
+* [Info Pypi Package From Cli](./python/info_pypi_package_from_cli.md)
+* [Print Unicode Codepoint](./python/print_unicode_codepoint.md)
 * [Python 2 To 3 Transform](./python/python_2_to_3_transform.md)
+
+Ruby
+====
+
+* [Find Profit Day Of Fibo Rule Fine](./ruby/find_profit_day_of_fibo_rule_fine.md)
+* [Gem Info](./ruby/gem_info.md)
+* [Rbenv Upgrade](./ruby/rbenv_upgrade.md)
+* [Upgrade Rubygems Itself](./ruby/upgrade_rubygems_itself.md)
+
+Userscript
+====
+
+* [Deploy Phase Badge](./userscript/deploy_phase_badge.md)
+
+Vuejs
+====
+
+* [30 Days Of Vue](./vuejs/30-days-of-vue.md)
 

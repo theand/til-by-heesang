@@ -146,3 +146,63 @@ example
 <!-- the shorthand syntax -->
 <button @click="methodName"></button>
 ```
+
+# 2019-01-18 : day 5 - LIST RENDERING WITH V-FOR
+
+https://www.fullstack.io/30-days-of-vue/day-05-list-rendering-with-v-for/
+
+
+- `v-for` :
+  - 데이터 소스의 아이템 리스트를 렌더링할때 사용.
+  - `v-for="item in items"`와 같은 문법이 필요.
+  - `key` 속성 :
+    - `v-for` 리스트에서 순회하여 렌더링하는 모든 요소들에 대해 `key` 속성을 명시하는게 관례. 각 요소에 대해 고유한 `key` 속성을 설정하면 이를 통해  각 노드의 아이덴티티를 고유하게 바인딩하여 관리할 수 있다.
+    - 기본적으로는 데이터소스에 따라 UI도 동적으로 변경되게 될때, DOM 노드를 움직이지 않고 각 요소 안에 있는 값만 바뀐다. 하지만 DOM의 상태나 자식 컴포넌트의 상태에 의존하는 경우에는 예상 밖의 동작을 하게 된다. `key` 를 통해 `v-for`가 렌더링한 DOM 노드를 하나의 아이덴티티로 묶어서 인식할 수 있게 해주어야 한다.
+    - `key` 속성은 항상 사용하길 권장되고 있고, 1) 성능상의 이유로 DOM의 이동이 아니라 요소만 바꾸는 기본 동작을 원하는게 확실한 경우, 2) DOM 컨텐트가 너무 심플한 경우에만 생략할 것을 권고하고 있다.
+
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    numbers: [
+      {id: 1, value: 1},
+      {id: 2, value: 10},
+      {id: 3, value: 100},
+      {id: 4, value: 1000},
+      {id: 5, value: 10000}
+    ],
+  },
+  methods: {
+    shuffle() {
+      this.numbers = _.shuffle(this.numbers)
+    }
+  }
+});
+```
+
+```HTML
+<html>
+  <head>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="number in numbers" :key="number.id">
+          <p>{{ number.value }}</p>
+          <input placeholder="type something..." />
+        </li>
+      </ul>
+      <button @click="shuffle">Shuffle!</button>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/lodash/lodash.js">
+    </script>
+    <script src="./main.js"></script>
+  </body>
+</html>
+```
+
+이렇게 하면, vue가 각 리스트 아이템(li)의 아이덴티티를 인식할 수 있게 된다.

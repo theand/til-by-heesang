@@ -147,12 +147,13 @@ example
 <button @click="methodName"></button>
 ```
 
-# 2019-01-18 : day 5 - LIST RENDERING WITH V-FOR
+# 2019-01-17 : day 5 - LIST RENDERING WITH V-FOR
 
 https://www.fullstack.io/30-days-of-vue/day-05-list-rendering-with-v-for/
 
 
-- `v-for` :
+`v-for` :
+
   - 데이터 소스의 아이템 리스트를 렌더링할때 사용.
   - `v-for="item in items"`와 같은 문법이 필요.
   - `key` 속성 :
@@ -206,3 +207,105 @@ new Vue({
 ```
 
 이렇게 하면, vue가 각 리스트 아이템(li)의 아이덴티티를 인식할 수 있게 된다.
+
+
+
+# 2019-01-18 : day 6 - FORM HANDLING WITH V-MODEL
+
+https://www.fullstack.io/30-days-of-vue/day-06-form-handling-with-v-model/
+
+
+`v-model`
+ - 유저 입력(form input -- text input, textarea, checkbox, radio button, dropdown 등등)과 vue 인스턴스의 데이터모델을 직접 양방향으로 연결해서 한쪽이 바뀌면 다른쪽도 같이 바뀔 수 있게 해준다.
+ - `v-model="dataProperty"` : 이 문법은 해당 입력이 바인딩될 data 프로퍼티의 이름을 취한다.
+
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    name: '',
+    subject: '',
+    termsAndConditions: false,
+    yesOrNo: 'No'
+  },
+  methods: {
+    submit() {
+      console.log('name', this.name);
+      console.log('subject', this.subject);
+      console.log(
+        'termsAndConditions',
+        this.termsAndConditions
+      );
+      console.log('yesOrNo', this.yesOrNo);
+    }
+  }
+});
+```
+
+```HTML
+<html>
+  <head>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet"
+      href="https://unpkg.com/bulma/css/bulma.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="field">
+        <label class="label">Name</label>
+        <input v-model="name"
+          class="input"
+          type="text"
+          placeholder="Text input" />
+      </div>
+
+      <div class="field">
+        <label class="label">Subject</label>
+        <div class="select">
+          <select v-model="subject">
+            <option disabled value="">
+              Select dropdown
+            </option>
+            <option>Engineering</option>
+            <option>Computer Science</option>
+            <option>Biology</option>
+            <option>Other...</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="checkbox">
+          <input v-model="termsAndConditions"
+            type="checkbox" />
+          I agree to the terms and conditions
+        </label>
+      </div>
+
+      <div class="field">
+        <label class="radio">
+          <input v-model="yesOrNo"
+            type="radio"
+            value="Yes" />
+          Yes
+        </label>
+        <label class="radio">
+          <input v-model="yesOrNo"
+            type="radio"
+            value="No" />
+          No
+        </label>
+      </div>
+
+      <div class="field">
+        <button class="button is-info" @click="submit">
+          Submit
+        </button>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
+```

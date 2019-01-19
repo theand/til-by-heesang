@@ -309,3 +309,16 @@ new Vue({
   </body>
 </html>
 ```
+
+
+# 2019-01-19 : day 7 - VUE DEVTOOLS
+
+https://www.fullstack.io/30-days-of-vue/day-07-vue-devtools/
+
+[Vue Devtools ](https://github.com/vuejs/vue-devtools)은 vue 코어팀이 만든 개발툴. 크롬 확장, 파이어폭스 애드온, 스탠드얼론 일렉트론 앱으로 제공된다.
+
+크롬 확장을 설치하고 활성화한 상태에서, 페이지에 프로덕션 버전인 `vue.min.js`가 아니라 개발용 버전인 `vue.js`가 로딩되어 있으면 vue devtools이 사용가능해진다.
+
+`http` 로 페이지를 로딩한 것이 아니라 로컬 파일을 `file://` 프로토콜로 로딩한 페이지에서도 쓰고 싶으면 크롬 확장 설정에서  권한을 허용해야 한다.
+
+위 조건을 만족시킨 상태에서 개발자 도구 윈도우를 띄우면 `Vue` 탭이 생긴다. 여기에서 vue 인스턴스의 루트부터 포함하고 있는 하위 컴포넌트들의 각 data 프로퍼티 값을 모니터링할 수 있고, 바로 여기에서 값을 변경할 수도 있다.

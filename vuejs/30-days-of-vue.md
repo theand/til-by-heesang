@@ -322,3 +322,16 @@ https://www.fullstack.io/30-days-of-vue/day-07-vue-devtools/
 `http` 로 페이지를 로딩한 것이 아니라 로컬 파일을 `file://` 프로토콜로 로딩한 페이지에서도 쓰고 싶으면 크롬 확장 설정에서  권한을 허용해야 한다.
 
 위 조건을 만족시킨 상태에서 개발자 도구 윈도우를 띄우면 `Vue` 탭이 생긴다. 여기에서 vue 인스턴스의 루트부터 포함하고 있는 하위 컴포넌트들의 각 data 프로퍼티 값을 모니터링할 수 있고, 바로 여기에서 값을 변경할 수도 있다.
+
+
+# 2019-01-20 : day 8 - METHODS AND COMPUTED PROPERTIES
+
+https://www.fullstack.io/30-days-of-vue/day-08-methods-and-computed-properties/
+
+- methods :  method 를 사용하지 않고, 템플릿에서 인라인으로 js 코드를 실행시켜도 된다. 이렇게 하는게 본질적으로 틀린 것은 아니지만, method를 쓰는것이 향후의 변경사항이 발생했을때 파악하기 쉽고 템플릿을 깨끗하고 이해하기 쉽게 유지할 수 있게 해준다.
+- computed properties : 뷰에서 표시하는 정보가 복잡한 계산을 필요로 하는 경우를 처리하기 위해 쓰인다.
+- method 와 computed property : 주요 차이점은 computed property 는  의존하는 데이터를 기준으로 캐싱이 된다는 점이다. 의존하는 data 프로퍼티가 변하지 않는다면 computed property는 캐쉬된 값을 돌려준다. 그러므로 computed property를 쓸 자리에 method를 사용할 수도 있지만, data property를 기반으로 한 값을 계산해야 한다면 computed property를 쓰는게 기본이다. 그리고 캐싱의 효과를 덤으로 얻을 수 있다.
+  - method 는 파라메터를 받을 수 있고, computed property는 받을 수 없다.
+- 대략 다음과 같이 사용하면 된다.
+  - method : 변경사항에 반응할때(이를테면 버튼 클릭, 폼 제출 등)나 아니면 인스턴스 내에서 명시적인 기능 변경이 필요할때(이를테면 라이프사이클 훅)
+  - computed property : 데이터 조작.

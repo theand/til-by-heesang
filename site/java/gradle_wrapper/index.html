@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>프로젝트마다 다른 gradle 버전 사용하기 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\ud504\ub85c\uc81d\ud2b8\ub9c8\ub2e4 \ub2e4\ub978 gradle \ubc84\uc804 \uc0ac\uc6a9\ud558\uae30";
+    var mkdocs_page_input_path = "java/gradle_wrapper.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>프로젝트마다 다른 gradle 버전 사용하기</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="gradle">프로젝트마다 다른 gradle 버전 사용하기</h1>
+<p>내 로컬에 homebrew로 설치한 gradle은 5.x 버전인데, 최근 투입된 프로젝트에서 사용하는 gradle은 3.x 이다. <code>jetty</code> 플러그인이 4.x 부터 쓸수없게 되었기에 gradle 빌드가 안되는데 <code>gretty</code> 로 플러그인을 교체하면 돌아가기는 한다. 빌드 프로세스를 다 이해한 것도 아니라 영향도 파악도 안됐는데 전체 gradle 버전을 올리자고 하기도 뭐하고, 로컬에서 5.x -&gt; 3.x 롤백하는 것도 몹시 귀찮고 싫고 해서, 내 로컬에서만 <code>build.gradle</code> 파일에 <code>gretty</code> 설정을 넣었다 뺐다하면서 작업하고 있었다. 여기서 파생된 다른 문제들 때문에 지인들에게 한탄을 했더니, gradle wrapper라는 것을 알려줬다.</p>
+<p>다음과 같은 과정을 통하면, 로컬 머신에 전역 설치된 gradle 의 버전과 별개로 프로젝트마다 다른 gradle 버전을 사용할 수 있게 된다.</p>
+<ol>
+<li><code>gradle/wrapper/gradle-wrapper.jar</code> 파일을 적당히 구해서 프로젝트에 집어넣는다. (알수 없는 이유로 내가 투입된 프로젝트에서는 gradle wrapper 관련 파일이 git ignore로 막혀서 이 과정이 필요했다.)</li>
+<li>쉘에서 <code>gradle wrapper --gradle-version 3.5</code> 이라고 입력하면 gradle wrapper 파일이 생성된다. 지정한 버전의 gradle 을 쓸 수 있게 된다.</li>
+<li>IntelliJ 의 Preference - Build - Gradle 에서 <code>Use default gradle wrapper</code> 를 체크하면 아까 지정한 버전의 gradle 으로 빌드가 수행된다.</li>
+<li>전역 gradle 은 최신버전으로 두고, <code>jetty</code> 플러그인 대신 <code>gretty</code> 플러그인을 사용하기 위해 빌드 설정을 수정해야했던 것을 안해도 된다. 문제 해결.</li>
+</ol>
+<p>비고. gradle wrapper 는 아래와 같은 내용으로 생성된다.</p>
+<pre><code>$ tree gradle
+gradle
+└── wrapper
+    ├── gradle-wrapper.jar
+    └── gradle-wrapper.properties
+
+$ bat gradle/wrapper/gradle-wrapper.properties
+───────┬───────────────────────────────────────────────────────────────────────────────────────────
+       │ File gradle/wrapper/gradle-wrapper.properties
+───────┼───────────────────────────────────────────────────────────────────────────────────────────
+   1   │ distributionBase=GRADLE_USER_HOME
+   2   │ distributionPath=wrapper/dists
+   3   │ distributionUrl=https\://services.gradle.org/distributions/gradle-3.5-bin.zip
+   4   │ zipStoreBase=GRADLE_USER_HOME
+   5   │ zipStorePath=wrapper/dists
+───────┴───────────────────────────────────────────────────────────────────────────────────────────
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

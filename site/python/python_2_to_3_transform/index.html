@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>의도 : (python2와 pyton3의 차이도 잘 모르지만) 일단 python2에서 돌아가던 스크립트를 python3에서 그럭저럭 돌아가게 만들기 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\uc758\ub3c4 : (python2\uc640 pyton3\uc758 \ucc28\uc774\ub3c4 \uc798 \ubaa8\ub974\uc9c0\ub9cc) \uc77c\ub2e8 python2\uc5d0\uc11c \ub3cc\uc544\uac00\ub358 \uc2a4\ud06c\ub9bd\ud2b8\ub97c python3\uc5d0\uc11c \uadf8\ub7ed\uc800\ub7ed \ub3cc\uc544\uac00\uac8c \ub9cc\ub4e4\uae30";
+    var mkdocs_page_input_path = "python/python_2_to_3_transform.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>의도 : (python2와 pyton3의 차이도 잘 모르지만) 일단 python2에서 돌아가던 스크립트를 python3에서 그럭저럭 돌아가게 만들기</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="python2-pyton3-python2-python3">의도 : (python2와 pyton3의 차이도 잘 모르지만) 일단 python2에서 돌아가던 스크립트를 python3에서 그럭저럭 돌아가게 만들기</h1>
+<p>til 에 작성한 마크다운 문서 목록을 <a href="../..">인덱스</a>로 만들어주는 <a href="../../build.py">스크립트</a>를 너무 옛날에 만든거라 python2 기반이었는데, 눈에 띈 참에 python3 기반으로 바꿔보려고 함.</p>
+<h1 id="_1">진행</h1>
+<h2 id="_2">인터프리터 지정</h2>
+<p>바로 실행가능한 스크립트로 쓰고 있었으므로, 인터프리터 경로를 python3 로 바꿔야 하는데, <code>env</code>로 경로를 찾고 있었으므로 간단히 아래 diff와 같이 지정하면 됨.</p>
+<pre><code>-#!/usr/bin/env python
++#!/usr/bin/env python3
+</code></pre>
+
+<h2 id="2to3">2to3</h2>
+<p>python2 코드를 python3 코드로 자동 번역해주는 파이썬 프로그램.</p>
+<p>https://docs.python.org/3.7/library/2to3.html</p>
+<p>따로 설치하는 패키지인가 했는데, 인터프리터 설치하면 기본으로 딸려오는 스크립트였다.</p>
+<pre><code>2to3 build.py
+</code></pre>
+
+<p>이렇게 하면 수정 필요한 부분을 stdout 에 출력함.</p>
+<p>수정 필요한 부분을 바로 파일에 반영하려면 <code>-w</code> 옵션을 주면 됨.</p>
+<pre><code>2to3 -w build.py
+</code></pre>
+
+<p>기본 옵션으로 실행하면, [미리 정의된 fixer 집합]에 대해 검사를 수행하는데, 명시적으로 fixer를 지정하려면 <code>-f</code> 옵션을 주면 된다.</p>
+<p><code>-f all</code> 옵션은 모든 디폴트 fixer를 활성화시킨다. 디폴트 fixer는 <a href="https://docs.python.org/3.7/library/2to3.html#to3-fixers">fixer 목록</a> 중에서 optional 이라고 써있는 것들 빼고 나머지이다.</p>
+<p>정리하는 김에 optional fixer 목록은 다음과 같다.</p>
+<ul>
+<li>buffer</li>
+<li>idioms</li>
+<li>set_literal</li>
+<li>ws_comma</li>
+</ul>
+<p>디폴트 fixer + optional fixer를 활성화 하려면 아래와 같이 <code>all</code>로 디폴트 fixer를 활성화하고, optional 을 명시적으로 써주면 된다.</p>
+<pre><code>2to3 -f all -f idioms build.py
+</code></pre>
+
+<p>fixer 설명들을 보면, python3 다운 코드가 무엇인지 엿볼 수 있는 듯 하다.</p>
+<p>see also https://github.com/python/cpython/tree/3.7/Lib/lib2to3/fixes</p>
+<h1 id="_3">결과</h1>
+<p>적용해보니, build.py 는 워낙 기본적인 문법만 사용하고 있던터라 <code>from __future__ import new_feature</code> 구문만 제거하는 정도만 수정이 필요했다.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

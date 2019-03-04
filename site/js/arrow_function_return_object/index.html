@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>arrow function 에서 객체 리터럴 리턴하기 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "arrow function \uc5d0\uc11c \uac1d\uccb4 \ub9ac\ud130\ub7f4 \ub9ac\ud134\ud558\uae30";
+    var mkdocs_page_input_path = "js/arrow_function_return_object.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../jquery-2.1.1.min.js" defer></script>
+  <script src="../modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>arrow function 에서 객체 리터럴 리턴하기</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="arrow-function">arrow function 에서 객체 리터럴 리턴하기</h1>
+<p>가끔 할때마다 세부 문법을 까먹어서 다시 찾아서 정리함.</p>
+<p>https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions</p>
+<h2 id="return">return 생략</h2>
+<p>기본적으로 arrow function 의 body 에 expression 하나만 쓰면 return expression 과 같다.</p>
+<pre><code class="javascript">(param1, param2, …, paramN) =&gt; expression
+// equivalent to: =&gt; { return expression; }
+</code></pre>
+
+<h2 id="_1">객체 리터럴을 리턴하고 싶다.</h2>
+<p>원하는건 이런 모양새</p>
+<pre><code class="javascript">let pair = (p1, p2) =&gt; SOMETHING;
+console.log(pair(&quot;v1&quot;, &quot;v2&quot;))
+//expect: { v1: &quot;v2&quot; }
+</code></pre>
+
+<p>그냥 객체 리터럴을 써볼까?</p>
+<pre><code class="javascript">let pair = (p1, p2) =&gt; {p1: p2};
+console.log(pair(&quot;v1&quot;, &quot;v2&quot;));
+//gets undefined
+</code></pre>
+
+<p>안된다.</p>
+<p>객체 리터럴을 리턴하려면 괄호로 싸줘야한다.</p>
+<pre><code class="javascript">// Parenthesize the body of function to return an object literal expression:
+params =&gt; ({foo: bar})
+</code></pre>
+
+<p>pair 에 적용해보면</p>
+<pre><code class="javascript">let pair = (p1, p2) =&gt; ({p1: p2});
+console.log(pair(&quot;v1&quot;, &quot;v2&quot;));
+//gets {p1: &quot;v2&quot;}
+</code></pre>
+
+<p>그런데 객체는 리턴하게 됐지만 key 가 원하는대로 다이나믹하게 들어가지 않는다.</p>
+<p>찾아보면 ES2015 의 Object initializer 에 computed property name syntax 가 들어왔다.</p>
+<p>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015</p>
+<pre><code class="JavaScript">{
+  [SOMETHING] : val
+}
+</code></pre>
+
+<p>다시 pair 에 적용해보면</p>
+<pre><code class="javascript">let pair = (p1, p2) =&gt; ({[p1]: p2});
+console.log(pair(&quot;v1&quot;, &quot;v2&quot;));
+//gets {v1: &quot;v2&quot;}
+</code></pre>
+
+<h3 id="_2">다른 예제로.</h3>
+<pre><code class="javascript">['a','b','c'].map( e =&gt; {val: e})
+// [undefined, undefined, undefined]
+</code></pre>
+
+<pre><code class="javascript">['a','b','c'].map( e =&gt; ({val: e}))
+//[ {val: &quot;a&quot;}, {val: &quot;b&quot;}, {val: &quot;c&quot;} ]
+</code></pre>
+
+<pre><code class="javascript">['a','b','c'].map( e =&gt; ({[e]: e}))
+//[ {a: &quot;a&quot;}, {b: &quot;b&quot;}, {c: &quot;c&quot;} ]
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>배포 단계 뱃지 표시 유저스크립트 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\ubc30\ud3ec \ub2e8\uacc4 \ubc43\uc9c0 \ud45c\uc2dc \uc720\uc800\uc2a4\ud06c\ub9bd\ud2b8";
+    var mkdocs_page_input_path = "userscript/deploy_phase_badge.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>배포 단계 뱃지 표시 유저스크립트</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">배포 단계 뱃지 표시 유저스크립트</h1>
+<h2 id="_2">용도</h2>
+<ul>
+<li>배포 단계 뱃지(phase badge) : 그냥 내가 혼자 쓰는 말인데, 서비스 개발을 하다보면 dev/stage/real/sandbox/cbt/production/live 등의 용어로 서비스의 배포 단계(deploy phase)를 구분하기 마련이고, 이들은 거의 같은 디자인의 웹페이지이고 도메인도 대충 비슷하지만 일부분만 다르게 되어 있을 것이다. 개발하면서 이슈 처리를 위해 이 페이즈와 저 페이즈를 왔다갔다하다보면 개발서버인줄 알고 보다보니 프로덕션 서버였고 하는 일이 이따금 생길 수 있다. 그래서 지금 보고 있는게 어느 페이즈인지 브라우저 주소창의 주소를 통해 식별해야하는게 너무 귀찮아서 적당한 뱃지(라기엔 그냥 박스지만) 표시를 CSS pseudo element를 통해 주입하여 써오고 있다.</li>
+</ul>
+<p><img alt="prod" src="../phase-prod.png" /></p>
+<p><img alt="sandbox" src="../phase-sandbox.png" /></p>
+<ul>
+<li>예전에는 <a href="https://chrome.google.com/webstore/detail/stylebot/oiaejidbmkiecgbjeifoejpgmdaleoha">Stylebot</a>이라는 크롬확장을 통해, 도메인마다 지정하여 써오고 있었는데, 크롬확장보다 userscript가 메모리를 덜 먹을 듯 하여, 이번에 새로운 조직에 합류하여 업무를 시작하게 된 김에 userscript로 옮겨보았다.</li>
+</ul>
+<h2 id="_3">코드</h2>
+<p>아래 코드는 다음과 같은 주소 패턴을 가진 서비스를 가졌고, phase 구분은 <code>local/sandbox/cbt/prod</code> 으로 한다고 가정했을 경우이다.</p>
+<ul>
+<li>http://local.product.awesomeservice.com</li>
+<li>http://dev.product.awesomeservice.com</li>
+<li>https://sandbox.product.awesomeservice.com</li>
+<li>https://cbt.product.awesomeservice.com</li>
+<li>https://product.awesomeservice.com</li>
+</ul>
+<pre><code class="javascript">// ==UserScript==
+// @name        phase-badge-for-SERVICE-NAME
+// @namespace   http://127.0.0.1
+// @description User Script for phase-badge-for-SERVICE-NAME
+// @author      Heesang Chae
+// @include     /https?://.*product.awesomeservice.com
+// @require     https://cdn.jsdelivr.net/gh/theand/userscript-util@latest/add.js
+// @require     https://cdn.jsdelivr.net/gh/theand/userscript-util@latest/element.js
+// @require     https://cdn.jsdelivr.net/gh/theand/userscript-util@latest/exec.js
+// @version     2019.01.04
+// @grant       none
+// ==/UserScript==
+
+
+/*global userscript_util*/
+
+const userscript = function (GM_info) {
+
+    console.group(GM_info.script.name);
+
+    userscript_util.exec.logGmInfo(GM_info);
+
+
+    const HostMap = [
+        {
+            phase: &quot;local&quot;,
+            hosts: [
+                &quot;local.product.awesomeservice.com&quot;,
+                &quot;local-my.product.awesomeservice.com&quot;,
+            ]
+        },
+        {
+            phase: &quot;sandbox&quot;,
+            hosts: [
+                &quot;dev.product.awesomeservice.com&quot;,
+                &quot;m-dev.product.awesomeservice.com&quot;,
+                &quot;sandbox.product.awesomeservice.com&quot;,
+                &quot;m-sandbox.product.awesomeservice.com&quot;,
+            ]
+        },
+        {
+            phase: &quot;cbt&quot;,
+            hosts: [
+                &quot;cbt.product.awesomeservice.com&quot;,
+                &quot;m-cbt.product.awesomeservice.com&quot;,
+            ]
+        },
+        {
+            phase: &quot;prod&quot;,
+            hosts: [
+                &quot;product.awesomeservice.com&quot;,
+                &quot;m.product.awesomeservice.com&quot;,
+            ]
+        }
+    ];
+
+    const findPhase = (hostname) =&gt; {
+        const found = HostMap.filter( e =&gt; e.hosts.includes(hostname))[0];
+        console.log(found);
+        return found.phase;
+    };
+
+    try {
+        const url = new URL(document.location);
+        const hostname = url.hostname;
+        console.log(`current hostname is ${hostname}`);
+        const key = findPhase(hostname);
+        console.log(`phase key is ${key}`);
+        const button = userscript_util.element.pseudoBodyButtonWith(key);
+        userscript_util.add.addGlobalStyle(button);
+    } catch (err) {
+        userscript_util.exec.logGmError(GM_info, err);
+    }
+
+    console.groupEnd();
+
+};
+
+if (top.document.location === self.document.location) {
+    userscript_util.exec.executeLater(userscript, GM_info, 500);
+}
+
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

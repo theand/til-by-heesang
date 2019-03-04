@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>http request에 대한 status code 체크하기 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "http request\uc5d0 \ub300\ud55c status code \uccb4\ud06c\ud558\uae30";
+    var mkdocs_page_input_path = "java/http_status_code_compare.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>http request에 대한 status code 체크하기</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="http-request-status-code">http request에 대한 status code 체크하기</h1>
+<h2 id="_1">동기</h2>
+<p>레거시 코드를 변경하다보니</p>
+<pre><code class="java">if (HttpServletResponse.SC_OK == respCode){
+
+}
+</code></pre>
+
+<p>위와 같은 코드가 있었고, 새 요구사항에서는 status code가 <code>207</code>이 오고 있었기에 위 코드는 작동하지 않았다. <code>HttpServletResponse</code> 에는 <code>207</code> 에 해당하는 상수가 없어서 일단 아래와 같이 하드코딩해서 작동만 확인함.</p>
+<pre><code class="java">if (HttpServletResponse.SC_OK == respCode  || 207 == respCode) {
+
+}
+</code></pre>
+
+<p>일단 돌아가게 해놓고, 이걸 일일이 조건문에 하드코딩해야하나? <code>2xx</code>는 성공이라고 구분하는 간단한 방법은 없나? 그리고 <code>HttpServletResponse</code>에는 왜 어떤 코드는 있고 어떤 코드는 없는거지?</p>
+<h2 id="_2">경과</h2>
+<h3 id="2xx-4xx">2xx인지 4xx인지 구분하기</h3>
+<p>https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/HttpStatus.html</p>
+<p>spring의 <code>HttpStatus</code> 를 쓰는게 가장 간단한 것 같다.</p>
+<p>위의 코드는 아래와 같이 바꾸었다.</p>
+<pre><code class="java">if (HttpStatus.valueOf(respCode).is2xxSuccessful()) {
+
+}
+</code></pre>
+
+<p>참고: 스프링 소스에서 최종적으로 <code>is2xxSuccessful()</code> 에서 어떻게 구분하는지는 <a href="https://github.com/spring-projects/spring-framework/blob/master/spring-web/src/main/java/org/springframework/http/HttpStatus.java#L605">찾아가보니</a>, 결국에는 status code를 100으로 나누어서 1~5까지의 값으로 구분하고 있었다.</p>
+<h3 id="_3">빠진 코드가 있는 이유는?</h3>
+<p>정확한 이유는 찾지 못했으나, <code>HttpServletResponse</code>에는 누락된 status code가 있다는 언급만 찾을 수 있었음.</p>
+<pre><code>HttpServletResponse supports the RFC1945 and part of RFC2616 standards, but it's missing all of RFC2518
+</code></pre>
+
+<p>status code를 하나하나 구분해서 쓰려면, <code>HttpServletResponse</code> 말고 다른 컴포넌트를 통해서 상수를 사용하는게 좋아보임. Spring, Apache HttpComponents, Netty 등</p>
+<p>source : https://stackoverflow.com/questions/730283/does-java-have-a-complete-enum-for-http-response-codes</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

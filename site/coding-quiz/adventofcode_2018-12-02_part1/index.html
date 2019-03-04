@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>문제 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\ubb38\uc81c";
+    var mkdocs_page_input_path = "coding-quiz/adventofcode_2018-12-02_part1.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>문제</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">문제</h1>
+<p>https://adventofcode.com/2018/day/2</p>
+<p>창고에 있는 박스 중에 비슷한 ID를 가진 박스를 찾으려고 한다. 우선 후보 박스들의 아이디를 스캔하였다. ID 중에 같은 문자가 딱 2번만 나오는 ID의 갯수를 세고, 그와 별개로 같은 문자가 딱 3번 나오는 ID의 갯수를 센 다음 그 두개의 수를 곱하여 체크섬을 얻는다. 제시된 ID 목록에 대하여 체크섬을 계산하라.</p>
+<h1 id="_2">풀이</h1>
+<p>ID 문자열을 한글자씩 쪼갠 다음, 각 글자별로 group by를 하고, 각 글자를 키로 하고 글자의 출현횟수를 값으로 하는 해쉬를 만든다. 그리고 그 해쉬의 값 중에 2가 있는지 3이 있는지 체크함.</p>
+<p>루비에서 배열과 해쉬에 제공되는 기본 연산자가 풍부해서 그걸 조합해 그럭저럭 빨리 풀렸다.</p>
+<p>box_id_checksum.rb</p>
+<pre><code class="ruby">
+class BoxIdChecksum
+
+  def self.classify(input)
+    hash = input.split(&quot;&quot;)
+        .group_by(&amp;:itself)
+        .transform_values!(&amp;:size)
+    result = Array.new
+    result &lt;&lt; 2 if hash.value? 2
+    result &lt;&lt; 3 if hash.value? 3
+    result
+  end
+
+  def self.checksum(input)
+    two = 0
+    three = 0
+    input.split(&quot;\n&quot;).each do |x|
+      c = self.classify(x)
+      two += 1 if c.include? 2
+      three += 1 if c.include? 3
+    end
+    two*three
+  end
+
+end
+</code></pre>
+
+<p>main.rb</p>
+<pre><code class="ruby">require './lib/box_id_checksum'
+
+input = File.read('input.txt').strip
+
+print &quot;Checksum for box ids is #{BoxIdChecksum.checksum(input)}\n&quot;
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

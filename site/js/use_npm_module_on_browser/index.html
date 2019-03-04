@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>브라우저에서 npm 모듈 사용하기 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\ube0c\ub77c\uc6b0\uc800\uc5d0\uc11c npm \ubaa8\ub4c8 \uc0ac\uc6a9\ud558\uae30";
+    var mkdocs_page_input_path = "js/use_npm_module_on_browser.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../jquery-2.1.1.min.js" defer></script>
+  <script src="../modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>브라우저에서 npm 모듈 사용하기</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="npm">브라우저에서 npm 모듈 사용하기</h1>
+<p>요구사항 : 최근에 사용해본 npm ics 모듈을 브라우저에서 쓰고 싶다. 구체적으로는 1) cdn에 올려가있는 2) npm 모듈을 userscript 에서 불러다 쓰고 싶다. 3) 혼자 쓸거라 적당히 더티해도 괜찮다.</p>
+<p>해결 :</p>
+<ol>
+<li>CDN : https://www.jsdelivr.com/ : npm 에 등록되있는 오픈소스를 쓰기에도 편하고, github public repo 에 있는 파일도 접근가능하다. <code>https://cdn.jsdelivr.net/gh/계정명/저장소명@태그/파일경로</code> 으로 접근가능하다. <code>@태그</code> 없으면 최근버전을 로딩하는데, CDN이라 캐쉬 문제가 있어서 귀찮아도 일일이 태깅해서 태그로 접근을 하고 안정화되면 태그를 latest 로 바꿔서 쓰고 있다. 비슷한 기능을 제공하는 오픈소스 CDN 서비스가 여럿있지만 요샌 그냥 이걸 쓰고 있다.</li>
+<li>npm 모듈을 브라우저에서 쓰기 : 이번에 처음 써봤는데 browserify 로 가능했다.</li>
+</ol>
+<p>참고한 글</p>
+<ul>
+<li>https://medium.com/jeremy-keeshin/hello-world-for-javascript-with-npm-modules-in-the-browser-6020f82d1072</li>
+<li>http://browserify.org/</li>
+</ul>
+<h2 id="_1">과정 요약</h2>
+<ul>
+<li>cli 설치 : <code>npm install -g browserify</code></li>
+<li>사용하려는 ics 모듈을 로딩하는 코드를 담은 저장소를 하나 만든다. : https://github.com/theand/ics-browserify</li>
+<li>require로 ics를 가져와서 window 네임스페이스에 모듈을 넣어버린다. 필요없는 단계일수도 있지만 여러번 테스트하기 귀찮아서 넣어버렸다.</li>
+</ul>
+<p>```javascript
+  const ics = require('ics')</p>
+<p>window.ics = ics;
+  ```</p>
+<ul>
+<li>browserify 한다. require() 로 불러온 모듈들의 의존성을 알아서 파일 하나로 합쳐준다.
+  <code>browserify main.js -o bundle.js</code></li>
+<li>github 에 bundle.js 도 올리고 태깅.</li>
+<li>userscript 로 테스트하기 전에 일단 제대로 불러와지는지 본다. 아무 페이지에서나 콘솔을 열고 아래 코드를 넣어서 샘플 코드가 돌아가는지 본다. VCALENDAR 포맷이 제대로 출력되면 끝.</li>
+</ul>
+<pre><code class="javascript">injectExternalJavaScript = (src) =&gt; {
+    const script = document.createElement(&quot;script&quot;);
+    script.type = &quot;text/javascript&quot;;
+    script.src = src;
+    document.body.appendChild(script);
+};
+injectExternalJavaScript(&quot;https://cdn.jsdelivr.net/gh/theand/ics-browserify@0.2/bundle.js&quot;);
+</code></pre>
+
+<pre><code class="javascript">//https://github.com/adamgibbons/ics 에 있는 첫번째 샘플코드에서 require 구문만 제거
+
+const event = {
+  start: [2018, 5, 30, 6, 30],
+  duration: { hours: 6, minutes: 30 },
+  title: 'Bolder Boulder',
+  description: 'Annual 10-kilometer run in Boulder, Colorado',
+  location: 'Folsom Field, University of Colorado (finish line)',
+  url: 'http://www.bolderboulder.com/',
+  geo: { lat: 40.0095, lon: 105.2669 },
+  categories: ['10k races', 'Memorial Day Weekend', 'Boulder CO'],
+  status: 'CONFIRMED',
+  organizer: { name: 'Admin', email: 'Race@BolderBOULDER.com' },
+  attendees: [
+    { name: 'Adam Gibbons', email: 'adam@example.com', rsvp: true },
+    { name: 'Brittany Seaton', email: 'brittany@example2.org', dir: 'https://linkedin.com/in/brittanyseaton' }
+  ]
+}
+
+ics.createEvent(event, (error, value) =&gt; {
+  if (error) {
+    console.log(error)
+    return
+  }else{
+    console.log(value)
+  }
+})
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

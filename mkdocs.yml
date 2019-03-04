@@ -1,0 +1,4 @@
+site_name: Heesang's TIL
+nav:
+        - Home: index.md
+theme: readthedocs

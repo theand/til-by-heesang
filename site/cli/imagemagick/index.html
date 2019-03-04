@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Imagemagick - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Imagemagick";
+    var mkdocs_page_input_path = "cli/imagemagick.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Imagemagick</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>cli 로 이미지 수정을 할 수 있는 <a href="https://www.imagemagick.org/">ImageMagick</a>의 사용 사례</p>
+<h1 id="_1">반전 시키기</h1>
+<h2 id="_2">필요</h2>
+<p>이사갈 집의 평면도 이미지를 구했는데, 내가 들어갈 동은 평면도 이미지와 방향이 일치하지 않았다. 이미지를 어떻게 뒤집어놓으면 내 머릿속에서 변환할 필요 없이 집 구조와 동일하게 매핑하는게 편할 것 같았다.</p>
+<p>'거울반전' 같은 용어가 떠올랐지만, 내가 원하는 반전의 정의가 거울반전과 일치하는지는 잘 모르겠다. 아무튼 거울반전은 flip horiziontally 인듯한데, 용어를 찾다보니 내가 원하는 방향을 정확하게 뭐라고 부르는지 더욱 모르게되었다. 아무튼.</p>
+<h2 id="_3">진행</h2>
+<p>사용할만한 옵션을 찾아보니 4가지 종류가 있어서 다 출력해보기로 함.</p>
+<pre><code>-flip               # vertical
+-flop               # horizontal
+-transpose          # flip vertical + rotate 90deg
+-transverse         # flip horizontal + rotate 270deg
+</code></pre>
+
+<pre><code>$ convert original.png -flip flip.png
+$ convert original.png -flop flop.png
+$ convert original.png -transpose transpose.png
+$ convert original.png -transverse transverse.png
+</code></pre>
+
+<h3 id="1-original">1. original</h3>
+<p><img alt="'1. original.png'" src="../1.original.png" /></p>
+<h3 id="2-flip">2. flip</h3>
+<p><img alt="'2. flip.png'" src="../2.flip.png" /></p>
+<h3 id="3-flop">3. flop</h3>
+<p><img alt="'3. flop.png'" src="../3.flop.png" /></p>
+<h3 id="4-transpose">4. transpose</h3>
+<p><img alt="'4. transpose.png'" src="../4.transpose.png" /></p>
+<h3 id="5-transverse">5. transverse</h3>
+<p><img alt="'5. transverse.png'" src="../5.transverse.png" /></p>
+<h2 id="_4">결과</h2>
+<p>transverse가 내가 원하는 옵션이었다. 사실 옵션 목록 보고, 대충 찍어서 transverse로 맨먼저 이미지를 뽑아보았는데, 나머지 옵션들로 돌리면 어떻게 될지 궁금해서 다 찍어보게 되었다.</p>
+<p>ref.</p>
+<ul>
+<li>https://devhints.io/imagemagick</li>
+<li>https://imagemagick.org/script/convert.php</li>
+<li>http://www.georeference.org/doc/transform_flip_horizontally_flip_vertically.htm</li>
+<li>http://gluebyte.tumblr.com/post/61312905319</li>
+<li>https://terms.naver.com/entry.nhn?docId=3568793&amp;cid=58941&amp;categoryId=58960</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

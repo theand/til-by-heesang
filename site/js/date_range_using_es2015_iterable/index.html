@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>ES2015 iterable 로 date range 만들어보기 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "ES2015 iterable \ub85c date range \ub9cc\ub4e4\uc5b4\ubcf4\uae30";
+    var mkdocs_page_input_path = "js/date_range_using_es2015_iterable.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../jquery-2.1.1.min.js" defer></script>
+  <script src="../modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>ES2015 iterable 로 date range 만들어보기</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="es2015-iterable-date-range">ES2015 iterable 로 date range 만들어보기</h1>
+<p>iterable protocol은 객체를 <code>for..of</code> 같은 구문에서 사용할 수 있게 해준다. 객체에 <code>Symbol.iterator</code> 을 이름으로 하는 메소드를 구현하면 이 프로토콜을 만족한다.</p>
+<p>메소드 이름을 <code>Symbol.iterator</code> 으로 하기 위해서는 computed property syntax 를 쓰면 된다. <code>[Symbol.iterator]</code></p>
+<p>요약하자면, iterable 은</p>
+<ul>
+<li>객체를 <code>for .. of</code> 구문을 통해 순회할 수 있게 해준다.</li>
+<li>spread operator (<code>...</code>) 에서도 쓸 수 있게 해준다.</li>
+<li><code>Symbol.iterator</code> 메소드를 구현하면 되고, 이 메소드에서는 iterator 를 만들어서 리턴한다.</li>
+</ul>
+<p>대략적인 코드 틀은 이러게 나온다고 보면 될 것 같다.</p>
+<pre><code class="javascript">
+const anIterable = {
+  //some codes
+  [Symbol.iterator]() {
+    return {
+      next() {
+        //some codes
+        return {
+          value: //some value,
+          done: //true/false
+        }
+      }
+    };
+  }
+};
+</code></pre>
+
+<p>iterable 까지 보고 나니, moment-range 의 이 코드가 이해가 되었다. https://github.com/rotaready/moment-range/blob/master/lib/moment-range.js#L61</p>
+<p>참고</p>
+<ul>
+<li>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators</li>
+<li>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols</li>
+<li>https://codeburst.io/a-simple-guide-to-es6-iterators-in-javascript-with-examples-189d052c3d8e</li>
+</ul>
+<h2 id="_1">사용 코드</h2>
+<pre><code class="javascript">const moment = require('moment');
+
+const start = moment('2018-10-15', 'YYYY-MM-DD');
+const end = moment('2018-11-22', 'YYYY-MM-DD');
+
+const moment_daterange = function (start, end) {
+    let next = start;
+
+    return {
+        [Symbol.iterator]() {
+            return {
+                next: () =&gt; {
+                    if (!next.isAfter(end)) {
+                        const ret = next.clone();
+                        next.add(1, 'd');
+                        return {value: ret, done: false}
+                    } else {
+                        return {value: undefined, done: true};
+                    }
+                }
+            }
+        }
+    };
+};
+
+
+const dateIterator = moment_daterange(start, end);
+
+for(let d of dateIterator){
+    console.log(d.format(moment.HTML5_FMT.DATE));
+}
+
+
+</code></pre>
+
+<p>하나씩 개별적으로 알아본 iterator, iterable, generator 의 관계에 대한 정리는 내일 하도록 하자.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>30 days of vue - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "30 days of vue";
+    var mkdocs_page_input_path = "vuejs/30-days-of-vue.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>30 days of vue</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a href="https://www.fullstack.io/30-days-of-vue/">30 days of vue</a>라는 강좌사이트가 눈에 띄었는데, vue도 까먹어가고 있는지 한참이기도 해서 하루에 한개씩 보면서 해치우기 좋은 구성인 것 같아서 바로 시작.</p>
+<h1 id="2019-01-09-day-1-what-is-vue">2019-01-09 : day 1 - what is vue</h1>
+<p>https://www.fullstack.io/30-days-of-vue/day-01-what-is-vue/</p>
+<ul>
+<li>progressive : 간단히 쓸때는 빌드 툴 필요 없이 jquery 처럼 <code>&lt;script src="https://cdn.jsdelivr.net/npm/vue"&gt;&lt;/script&gt;</code> 으로 바로 쓸 수 있다. 복잡해지면 관련 툴 생태계의 도움을 받아 더 생산적인 구성을 할 수도 있다.</li>
+<li>approachable : html, css, js만 알면 된다.</li>
+<li>versatile : vue 코어팀에 의해 관리되는 에코시스템이 있다. <code>vue-cli</code>, <code>vue-router</code>, <code>vuex</code>, <code>vue-test-utils</code> 등.</li>
+<li>performant : virtual DOM 으로 빠른 렌더링의 장점을 확보한다.</li>
+</ul>
+<p>헬로월드 찍기</p>
+<pre><code class="javascript">
+new Vue({
+  el: '#app',
+  data: {
+    greeting: 'Hello World!',
+  },
+});
+</code></pre>
+
+<pre><code class="html">&lt;html&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;
+      &lt;h2&gt;{{ greeting }}&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;https://unpkg.com/vue&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;./main.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h1 id="2019-01-12-day-2-the-vue-instance-data">2019-01-12 : day 2 - THE VUE INSTANCE - DATA</h1>
+<p>https://www.fullstack.io/30-days-of-vue/day-02-the-vue-instance---data/</p>
+<ul>
+<li>THE VUE INSTANCE : vue 앱의 시작점. data 프로퍼티에 데이터를 바인딩 해두고 인스턴스에서 템플릿에서 사용할 수 있게 해준다.</li>
+</ul>
+<pre><code class="javascript">new Vue({
+  el: '#app',
+  data: {
+    greeting: 'Hello World!',
+  },
+});
+</code></pre>
+
+<pre><code class="html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./styles.css&quot; /&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;
+      &lt;h2&gt;{{ greeting }}&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;https://unpkg.com/vue&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;./main.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<ul>
+<li>METHODS AND HANDLING EVENTS : data 프로퍼티에 있는 값은 reactive 하다. 뷰 인스턴스에 있는 값이 바뀌면 템플릿을 다시 렌더링해서 바뀐 값을 보여준다.</li>
+</ul>
+<pre><code class="html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./styles.css&quot; /&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;
+      &lt;h2&gt;{{ greeting }}&lt;/h2&gt;
+      &lt;button v-on:click=&quot;changeGreeting&quot;&gt;
+        Change Greeting
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;https://unpkg.com/vue&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;./main.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<pre><code class="javasctipt">new Vue({
+  el: '#app',
+  data: {
+    greeting: 'Hello World!',
+  },
+  methods: {
+    changeGreeting() {
+      this.greeting = this.greeting === 'Hello World!' ?
+       'What is up!' :
+       'Hello World!';
+    }
+  }
+});
+</code></pre>
+
+<blockquote>
+<p>When a Vue instance is instantiated, Vue recursively creates a series of getters and setters for each data property to make them reactive. Within an instance, the data object can then be accessed with this.$data. With proxying, Vue proxies all the properties of the instance so this.$data.greeting is equal to simply stating this.greeting</p>
+</blockquote>
+<h1 id="2019-01-12-day-3-the-vue-instance-data-driven-applications">2019-01-12 : day 3 - THE VUE INSTANCE - DATA DRIVEN APPLICATIONS</h1>
+<p>https://www.fullstack.io/30-days-of-vue/day-03-the-vue-instance---data-driven-applications/</p>
+<ul>
+<li>
+<p>data : vue 인스턴스의 <code>data</code> 프로퍼티에 선언한 key-value 조합은 뷰 라이브러리가 알아서 getter, setter를 만들고 값의 변화를 추적해 변경사항이 있을떄 템플릿이 렌더링을 다시 하게 됨.</p>
+</li>
+<li>
+<p>data driven application</p>
+</li>
+<li>vanilla js 샘플 앱 : DOM 이 값의 근원이 됨. 값을 읽고 변경하기 위해 계속 DOM을 직접 읽고 써야함.</li>
+<li>
+<p>vue js 샘플 앱 : vue 인스턴스의 data 프로퍼티가 값의 근원이 됨. DOM을 직접 읽고 쓰는 일이 거의 없음.</p>
+</li>
+<li>
+<p>VUE DATA PROPERTIES : vue 인스턴스가 생성될될때 reactivity를 초기화하므로, 사용하려는 데이터를 미리 선언해놔야 한다. 이것 때문에, 이미 생성된 인스턴스에 프로퍼티를 직접 추가하거나 삭제할 수 없게 된다. (2019년에 나올 vue 3.0에서는 이게 가능해질 예정이라고 한다)</p>
+</li>
+</ul>
+<h1 id="2019-01-13-day-4-vue-directives">2019-01-13 : day 4 - VUE DIRECTIVES</h1>
+<p>https://www.fullstack.io/30-days-of-vue/day-04-vue-directives/</p>
+<ul>
+<li><code>v-on</code> :  이벤트 리스너 생성. vue 인스턴스의 메소드를 트리거하거나 자바스크립트를 인라인으로 넣을 수 있다. 어느 native dom 에나 넣을 수 있다.</li>
+<li>key modifier : 키보드 이벤트를 리스닝할때는 많이 쓰이는 키에 대해 미리 정의된 key modifier를 사용해 키코드를 체크할 수 있다. see https://vuejs.org/v2/guide/events.html#Key-Modifiers</li>
+<li><code>$event</code> : 이벤트 자체에 대한 세부 정보를 담은 객체를 참조할 수 있는 이름이다.</li>
+<li><code>v-bind</code> : HTML 요소의 text content에는 <code>{{ variable }}</code> 와 같은 식으로 데이터 값을 바인딩할 수 있지만, HTML attribute에는 그렇게 할 수 없고 <code>v-bind</code> 디렉티브를 사용해야 한다.</li>
+<li><code>v-if</code>, <code>v-show</code> : 어떤 표현식의 값에 따라 컨텐트를 렌더링할지 말지 결정할때 쓸 수 있는 디렉티브. <code>v-else</code> 와 <code>v-else-if</code> 디렉티브도 있다.</li>
+<li><code>v-if</code> : true가 아니면 요소를 렌더링하지 않는다.</li>
+<li><code>v-show</code> : 요소는 항상 렌더링되지만 css display 속성으로 show/hide를 제어한다.</li>
+<li>dom 요소가 굳이 존재해야할 필요가 없으면 보통 <code>v-if</code>를 선호하고, dom 요소가 굳이 존재해야할 필요가 있거나 토글이 자주 발생하는 경우에는 <code>v-show</code>가 적합하다.</li>
+<li>shorthand syntax :</li>
+<li><code>v-bind</code> -&gt; <code>:</code></li>
+<li><code>v-on</code> -&gt; <code>@</code></li>
+</ul>
+<p>example</p>
+<pre><code class="HTML">&lt;!-- the full syntax --&gt;
+&lt;img v-bind:src=&quot;dataProperty&quot; /&gt;
+
+&lt;!-- the shorthand syntax --&gt;
+&lt;img :src=&quot;dataProperty&quot; /&gt;
+
+&lt;!-- the full syntax --&gt;
+&lt;button v-on:click=&quot;methodName&quot;&gt;&lt;/button&gt;
+
+&lt;!-- the shorthand syntax --&gt;
+&lt;button @click=&quot;methodName&quot;&gt;&lt;/button&gt;
+</code></pre>
+
+<h1 id="2019-01-17-day-5-list-rendering-with-v-for">2019-01-17 : day 5 - LIST RENDERING WITH V-FOR</h1>
+<p>https://www.fullstack.io/30-days-of-vue/day-05-list-rendering-with-v-for/</p>
+<p><code>v-for</code> :</p>
+<ul>
+<li>데이터 소스의 아이템 리스트를 렌더링할때 사용.</li>
+<li><code>v-for="item in items"</code>와 같은 문법이 필요.</li>
+<li><code>key</code> 속성 :<ul>
+<li><code>v-for</code> 리스트에서 순회하여 렌더링하는 모든 요소들에 대해 <code>key</code> 속성을 명시하는게 관례. 각 요소에 대해 고유한 <code>key</code> 속성을 설정하면 이를 통해  각 노드의 아이덴티티를 고유하게 바인딩하여 관리할 수 있다.</li>
+<li>기본적으로는 데이터소스에 따라 UI도 동적으로 변경되게 될때, DOM 노드를 움직이지 않고 각 요소 안에 있는 값만 바뀐다. 하지만 DOM의 상태나 자식 컴포넌트의 상태에 의존하는 경우에는 예상 밖의 동작을 하게 된다. <code>key</code> 를 통해 <code>v-for</code>가 렌더링한 DOM 노드를 하나의 아이덴티티로 묶어서 인식할 수 있게 해주어야 한다.</li>
+<li><code>key</code> 속성은 항상 사용하길 권장되고 있고, 1) 성능상의 이유로 DOM의 이동이 아니라 요소만 바꾸는 기본 동작을 원하는게 확실한 경우, 2) DOM 컨텐트가 너무 심플한 경우에만 생략할 것을 권고하고 있다.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="javascript">new Vue({
+  el: '#app',
+  data: {
+    numbers: [
+      {id: 1, value: 1},
+      {id: 2, value: 10},
+      {id: 3, value: 100},
+      {id: 4, value: 1000},
+      {id: 5, value: 10000}
+    ],
+  },
+  methods: {
+    shuffle() {
+      this.numbers = _.shuffle(this.numbers)
+    }
+  }
+});
+</code></pre>
+
+<pre><code class="HTML">&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./styles.css&quot; /&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;
+      &lt;ul&gt;
+        &lt;li v-for=&quot;number in numbers&quot; :key=&quot;number.id&quot;&gt;
+          &lt;p&gt;{{ number.value }}&lt;/p&gt;
+          &lt;input placeholder=&quot;type something...&quot; /&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;button @click=&quot;shuffle&quot;&gt;Shuffle!&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;https://unpkg.com/vue&quot;&gt;&lt;/script&gt;
+    &lt;script
+      src=&quot;https://cdn.jsdelivr.net/npm/lodash/lodash.js&quot;&gt;
+    &lt;/script&gt;
+    &lt;script src=&quot;./main.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>이렇게 하면, vue가 각 리스트 아이템(li)의 아이덴티티를 인식할 수 있게 된다.</p>
+<h1 id="2019-01-18-day-6-form-handling-with-v-model">2019-01-18 : day 6 - FORM HANDLING WITH V-MODEL</h1>
+<p>https://www.fullstack.io/30-days-of-vue/day-06-form-handling-with-v-model/</p>
+<p><code>v-model</code>
+ - 유저 입력(form input -- text input, textarea, checkbox, radio button, dropdown 등등)과 vue 인스턴스의 데이터모델을 직접 양방향으로 연결해서 한쪽이 바뀌면 다른쪽도 같이 바뀔 수 있게 해준다.
+ - <code>v-model="dataProperty"</code> : 이 문법은 해당 입력이 바인딩될 data 프로퍼티의 이름을 취한다.</p>
+<pre><code class="javascript">new Vue({
+  el: '#app',
+  data: {
+    name: '',
+    subject: '',
+    termsAndConditions: false,
+    yesOrNo: 'No'
+  },
+  methods: {
+    submit() {
+      console.log('name', this.name);
+      console.log('subject', this.subject);
+      console.log(
+        'termsAndConditions',
+        this.termsAndConditions
+      );
+      console.log('yesOrNo', this.yesOrNo);
+    }
+  }
+});
+</code></pre>
+
+<pre><code class="HTML">&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./styles.css&quot; /&gt;
+    &lt;link rel=&quot;stylesheet&quot;
+      href=&quot;https://unpkg.com/bulma/css/bulma.css&quot; /&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;
+      &lt;div class=&quot;field&quot;&gt;
+        &lt;label class=&quot;label&quot;&gt;Name&lt;/label&gt;
+        &lt;input v-model=&quot;name&quot;
+          class=&quot;input&quot;
+          type=&quot;text&quot;
+          placeholder=&quot;Text input&quot; /&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;field&quot;&gt;
+        &lt;label class=&quot;label&quot;&gt;Subject&lt;/label&gt;
+        &lt;div class=&quot;select&quot;&gt;
+          &lt;select v-model=&quot;subject&quot;&gt;
+            &lt;option disabled value=&quot;&quot;&gt;
+              Select dropdown
+            &lt;/option&gt;
+            &lt;option&gt;Engineering&lt;/option&gt;
+            &lt;option&gt;Computer Science&lt;/option&gt;
+            &lt;option&gt;Biology&lt;/option&gt;
+            &lt;option&gt;Other...&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;field&quot;&gt;
+        &lt;label class=&quot;checkbox&quot;&gt;
+          &lt;input v-model=&quot;termsAndConditions&quot;
+            type=&quot;checkbox&quot; /&gt;
+          I agree to the terms and conditions
+        &lt;/label&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;field&quot;&gt;
+        &lt;label class=&quot;radio&quot;&gt;
+          &lt;input v-model=&quot;yesOrNo&quot;
+            type=&quot;radio&quot;
+            value=&quot;Yes&quot; /&gt;
+          Yes
+        &lt;/label&gt;
+        &lt;label class=&quot;radio&quot;&gt;
+          &lt;input v-model=&quot;yesOrNo&quot;
+            type=&quot;radio&quot;
+            value=&quot;No&quot; /&gt;
+          No
+        &lt;/label&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;field&quot;&gt;
+        &lt;button class=&quot;button is-info&quot; @click=&quot;submit&quot;&gt;
+          Submit
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;https://unpkg.com/vue&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;./main.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h1 id="2019-01-19-day-7-vue-devtools">2019-01-19 : day 7 - VUE DEVTOOLS</h1>
+<p>https://www.fullstack.io/30-days-of-vue/day-07-vue-devtools/</p>
+<p><a href="https://github.com/vuejs/vue-devtools">Vue Devtools </a>은 vue 코어팀이 만든 개발툴. 크롬 확장, 파이어폭스 애드온, 스탠드얼론 일렉트론 앱으로 제공된다.</p>
+<p>크롬 확장을 설치하고 활성화한 상태에서, 페이지에 프로덕션 버전인 <code>vue.min.js</code>가 아니라 개발용 버전인 <code>vue.js</code>가 로딩되어 있으면 vue devtools이 사용가능해진다.</p>
+<p><code>http</code> 로 페이지를 로딩한 것이 아니라 로컬 파일을 <code>file://</code> 프로토콜로 로딩한 페이지에서도 쓰고 싶으면 크롬 확장 설정에서  권한을 허용해야 한다.</p>
+<p>위 조건을 만족시킨 상태에서 개발자 도구 윈도우를 띄우면 <code>Vue</code> 탭이 생긴다. 여기에서 vue 인스턴스의 루트부터 포함하고 있는 하위 컴포넌트들의 각 data 프로퍼티 값을 모니터링할 수 있고, 바로 여기에서 값을 변경할 수도 있다.</p>
+<h1 id="2019-01-20-day-8-methods-and-computed-properties">2019-01-20 : day 8 - METHODS AND COMPUTED PROPERTIES</h1>
+<p>https://www.fullstack.io/30-days-of-vue/day-08-methods-and-computed-properties/</p>
+<ul>
+<li>methods :  method 를 사용하지 않고, 템플릿에서 인라인으로 js 코드를 실행시켜도 된다. 이렇게 하는게 본질적으로 틀린 것은 아니지만, method를 쓰는것이 향후의 변경사항이 발생했을때 파악하기 쉽고 템플릿을 깨끗하고 이해하기 쉽게 유지할 수 있게 해준다.</li>
+<li>computed properties : 뷰에서 표시하는 정보가 복잡한 계산을 필요로 하는 경우를 처리하기 위해 쓰인다.</li>
+<li>method 와 computed property : 주요 차이점은 computed property 는  의존하는 데이터를 기준으로 캐싱이 된다는 점이다. 의존하는 data 프로퍼티가 변하지 않는다면 computed property는 캐쉬된 값을 돌려준다. 그러므로 computed property를 쓸 자리에 method를 사용할 수도 있지만, data property를 기반으로 한 값을 계산해야 한다면 computed property를 쓰는게 기본이다. 그리고 캐싱의 효과를 덤으로 얻을 수 있다.</li>
+<li>method 는 파라메터를 받을 수 있고, computed property는 받을 수 없다.</li>
+<li>대략 다음과 같이 사용하면 된다.</li>
+<li>method : 변경사항에 반응할때(이를테면 버튼 클릭, 폼 제출 등)나 아니면 인스턴스 내에서 명시적인 기능 변경이 필요할때(이를테면 라이프사이클 훅)</li>
+<li>computed property : 데이터 조작.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

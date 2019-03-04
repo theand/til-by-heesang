@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>로컬테스트용으로 사용하는 .dev gTLD는 이제 그만 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\ub85c\uceec\ud14c\uc2a4\ud2b8\uc6a9\uc73c\ub85c \uc0ac\uc6a9\ud558\ub294 .dev gTLD\ub294 \uc774\uc81c \uadf8\ub9cc";
+    var mkdocs_page_input_path = "macos/gtld_for_local_test.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>로컬테스트용으로 사용하는 .dev gTLD는 이제 그만</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="dev-gtld">로컬테스트용으로 사용하는 .dev gTLD는 이제 그만</h1>
+<h2 id="_1">상황</h2>
+<p>한때 개발용 로컬 도메인으로 <code>.dev</code> 를 TLD로 쓰는 스타일이 마음에 들어서 그걸 차용했었고, 일일이 <code>hosts</code> 파일에 안적어줘도 되도록 해주는 툴들( <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">dnsmasq</a> , <a href="http://pow.cx/">pow</a> )이 있어서 제대로 들여다보진 않았지만 대충 튜토리얼 보고 설정을 해놓았음. 근데, 최근 2년넘도록 <code>.dev</code> 도메인을 써서 개발할 만한 작업이 없었음.</p>
+<p>개발자들이 로컬용으로 쓰던 <code>.dev</code> gTLD를 구글이 정식으로 취득(?)했고, 덕분에 크롬63(2017/12)부터 <code>.dev</code> 도메인에 대해서는 <a href="https://webdevstudios.com/2017/12/12/google-chrome-63/">https default로 적용된다</a>는 것도 알고 있긴 했는데, 내 로컬에서도 안 쓰고 구글 사이트에서도 쓰는지 안 쓰는지 모르겠어서 크게 관심은 두지 않았는데..</p>
+<p>그러다가 문득 V8 JS engine의 <a href="https://v8.dev/blog">블로그 링크</a>를 보게 되어서 접속해보려고 하니 접속이 되지 않는 것. LTE폰에서는 접속이 됐다. 내가 설치해둔 <code>.dev</code>  관련 툴의 설정이 원인이라는 것은 감이 왔는데, 뭘 어떻게 했는지 도무지 기억이 나지 않는 상태.</p>
+<p>참고</p>
+<ul>
+<li>https://icannwiki.org/.dev</li>
+<li>https://ma.ttias.be/chrome-force-dev-domains-https-via-preloaded-hsts/</li>
+<li>https://medium.engineering/use-a-dev-domain-not-anymore-95219778e6fd</li>
+</ul>
+<h2 id="_2">경과</h2>
+<p><code>dig</code>와 <code>traceroute</code>가 참고하는 설정이 어떻게 다른진 모르겠지만 dig 에서는 IP가 나왔지만 traceroute 에서는 찾아가지 못함.</p>
+<pre><code>$ dig +short v8.dev
+151.101.65.195
+151.101.1.195
+
+$ traceroute v8.dev
+traceroute: unknown host v8.dev
+</code></pre>
+
+<p>아래 경로에서 <code>dnsmasq</code>나 <code>pow</code>가 실행되도록 설정되었는지 찾아보았으나, 자주 쓰지 않는 툴이었기 때문에 내가 분명히 설정을 false로 바꾸어놓았었다.</p>
+<pre><code>/Library/LaunchDaemons
+/Library/LaunchAgents
+</code></pre>
+
+<p>런칭 설정을 내가 잘못이해한 것일지도 모르니 <code>dnsmasq</code>, <code>pow</code> 의 설정 파일을 뒤져서 관련있음직한 부분을 주석처리했다.</p>
+<pre><code>/opt/boxen/config/dnsmasq/dnsmasq.conf
+~/.powconfig
+</code></pre>
+
+<p>혹시 몰라 재부팅해도 여전히 마찬가지.</p>
+<p>어차피 안 쓴지 오래됐으니 에라 모르겠다 , <code>brew uninstall --force dnsmasq pow</code> 하고 재부팅했으나 여전히 마찬가지.</p>
+<p>혹시나 하고 맨처음에 세팅을 어떻게 했는지 찾아보았다.</p>
+<ul>
+<li>https://gist.github.com/ogrrd/5831371</li>
+<li>https://passingcuriosity.com/2013/dnsmasq-dev-osx/</li>
+</ul>
+<p>아, <code>dnsmasq</code> 를 설치하고 설정하는 것과 별개로 <code>/etc/resolver/dev</code> 에 수동으로 설정을 추가하는 과정이 있었던 것이다.</p>
+<pre><code>$ cat /etc/resolver/dev
+# nameserver 127.0.0.1
+</code></pre>
+
+<p>주석처리하니까 제대로 접속이 된다.</p>
+<pre><code>$ traceroute v8.dev
+traceroute: Warning: v8.dev has multiple addresses; using 151.101.1.195
+traceroute to v8.dev (151.101.1.195), 64 hops max, 52 byte packets
+...생략
+</code></pre>
+
+<p>그땐 뭘 모르고 설정 따라했는데 지금 이 상황을 겪고 보니, <code>dnsmasq</code>는 <code>*.dev</code>를 <code>127.0.0.1</code> 로 resolve해주는 로컬 DNS서버이고, <code>/etc/resolver/dev</code> 는 macos가 <code>*.dev</code>에 대한 DNS 서버는 <code>127.0.0.1</code> 에 있으니 거기로 도메인 질의를 하라고 알려주는 설정으로 이해가 된다. 그래서 <code>dnsmasq</code> 를 지웠음에도 여전히 접속이 안 된 것.</p>
+<h2 id="_3">로컬 개발용 도메인으로는 뭘 써야하나?</h2>
+<pre><code>To safely satisfy these needs, four domain names are reserved as
+   listed and described below.
+
+                   .test
+                .example
+                .invalid
+              .localhost
+
+      &quot;.test&quot; is recommended for use in testing of current or new DNS
+      related code.
+
+      &quot;.example&quot; is recommended for use in documentation or as examples.
+
+      &quot;.invalid&quot; is intended for use in online construction of domain
+      names that are sure to be invalid and which it is obvious at a
+      glance are invalid.
+
+      The &quot;.localhost&quot; TLD has traditionally been statically defined in
+      host DNS implementations as having an A record pointing to the
+      loop back IP address and is reserved for such use.  Any other use
+      would conflict with widely deployed code which assumes this use.
+</code></pre>
+
+<p>source: https://tools.ietf.org/html/rfc2606#section-2</p>
+<p>RFC에 따르면 <code>.test</code> 를 쓰는걸 권장한다고 한다.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

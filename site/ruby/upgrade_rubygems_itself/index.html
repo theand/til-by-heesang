@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>rubygems 업그레이드하기 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "rubygems \uc5c5\uadf8\ub808\uc774\ub4dc\ud558\uae30";
+    var mkdocs_page_input_path = "ruby/upgrade_rubygems_itself.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>rubygems 업그레이드하기</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="rubygems">rubygems 업그레이드하기</h1>
+<h2 id="1">1차</h2>
+<p><code>gem info</code> 사용하려니, 옛날에 설치해놓은 2.6.13 버전에서는 지원되지 않는 명령어였다.</p>
+<p>찾아보니 아래와 같은 명령어로 업그레이드를 할 수 있었고, 3.0.0 으로 업그레이드가 되어 <code>gem info</code> 를 사용할 수 있었다.</p>
+<pre><code>gem install rubygems-update
+update_rubygems
+gem update --system
+</code></pre>
+
+<p>source:</p>
+<ul>
+<li>https://stackoverflow.com/questions/13626143/how-to-upgrade-rubygems</li>
+</ul>
+<h2 id="2">2차</h2>
+<p>뭔지 모르고 일단 복붙해서 실행하고 하려던 것은 해결했는데, 명령어 하나하나가 무슨 뜻인지 찾아봤다.</p>
+<p>찾아보니, 아래 두 줄의 커맨드는 지금 환경에서는 불필요한 것이었다.</p>
+<pre><code>gem install rubygems-update
+update_rubygems
+</code></pre>
+
+<p><code>gem update --system</code> 커맨드가 문제가 있었던 아주 옛날 버전에서나 수동 업그레이드를 하기 위해 위 두줄의 커맨드가 필요했고, 지금은 <code>gem update --system</code> 으로 해결됨.</p>
+<p>source :
+- https://guides.rubygems.org/command-reference/#gem-update
+- https://rubygems.org/gems/rubygems-update
+- https://github.com/rubygems/rubygems/blob/master/bin/update_rubygems
+- https://stackoverflow.com/questions/37149483/difference-between-update-rubygems-and-gem-update-system
+- https://github.com/rubygems/rubygems/blob/master/UPGRADING.md</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>rbenv 로 루비 버전 업그레이드 하기 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "rbenv \ub85c \ub8e8\ube44 \ubc84\uc804 \uc5c5\uadf8\ub808\uc774\ub4dc \ud558\uae30";
+    var mkdocs_page_input_path = "ruby/rbenv_upgrade.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>rbenv 로 루비 버전 업그레이드 하기</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="rbenv">rbenv 로 루비 버전 업그레이드 하기</h1>
+<h2 id="_1">발단</h2>
+<p>지금 쓰는 장비를 예전에 rbenv 로 루비를 <code>2.2.x</code>를 설치하고 가끔 생각날때마다 업데이트를 해서 현재 <code>2.4.x</code> 를 쓰고 있다. 얼마전에 나온 <code>2.6.0</code> 을 써보려는데, 그동안 신경 안쓴지 오래되서 하나도 생각이 안나서 커맨드를 찾아봄.</p>
+<h2 id="_2">경과</h2>
+<ul>
+<li>https://github.com/rbenv/rbenv</li>
+<li>https://github.com/rbenv/ruby-build</li>
+</ul>
+<p>rbenv 문서를 대충 훑어봄. homebrew로 설치했으면 간단했을텐데, <code>rbenv</code> 자체를 <code>boxen</code> 으로 설치했던터라 기억을 다시 한참 돌이켜야 했다. <code>boxen</code>으로 설치한 방법은 깃헙 저장소를 직접 체크아웃 해서 설치한 방식과 같다고 볼 수 있다.</p>
+<p>rbenv 는 <code>/opt/boxen/rbenv</code> 에 있었고, ruby-build는 <code>/opt/boxen/ruby-build</code> 에 있었다.</p>
+<p>각각 저장소를 갱신해준다.</p>
+<pre><code>/opt/boxen/rbenv on master $ git pull
+/opt/boxen/ruby-build on master $ git pull
+</code></pre>
+
+<p>이렇게 하면 최신 버전에 대한 설치 정보가 로컬에 업데이트 된다.</p>
+<p>아래 명령어를 통해 설치가능한 버전을 볼 수 있고, 여기서 출력하는 목록 중에 <code>2.6.0</code> 이 나오면 된다.</p>
+<pre><code>rbenv install -l
+</code></pre>
+
+<p>아래 명령어로 그동안 <code>rbenv</code>를 통해 로컬에 설치한 루비 버전 목록을 볼 수 있고, 특별히 구 버전이 필요한게 아니면 예전 버전은 지울 수 있다.</p>
+<pre><code>$ rbenv versions
+  system
+  1.9.3-p551
+  2.2.5
+  2.3.4
+* 2.4.2 (set by /opt/boxen/rbenv/version)
+
+$ rbenv uninstall 1.9.3-p551
+rbenv: remove /opt/boxen/rbenv/versions/1.9.3-p551? [yN] y
+
+$ rbenv uninstall 2.2.5
+rbenv: remove /opt/boxen/rbenv/versions/2.2.5? [yN] y
+
+$ rbenv uninstall 2.3.4
+rbenv: remove /opt/boxen/rbenv/versions/2.3.4? [yN] y
+</code></pre>
+
+<p>원하는 버전 설치는 아래 명령어로 가능하고, 설치 완료되는데는 시간이 좀 걸린다.</p>
+<pre><code>$ rbenv install 2.6.0
+ruby-build: use openssl from homebrew
+Downloading ruby-2.6.0.tar.bz2...
+-&gt; https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0.tar.bz2
+Installing ruby-2.6.0...
+ruby-build: use readline from homebrew
+Installed ruby-2.6.0 to /opt/boxen/rbenv/versions/2.6.0
+</code></pre>
+
+<p>다시 <code>versions</code> 와 <code>version</code> 커맨드를 통해 확인해보면 <code>2.6.0</code>이 설치 완료되었으나 현재 설정된 버전은 <code>2.4.2</code>라고 나오니 <code>global</code> 커맨드를 통해 <code>2.6.0</code> 으로 바꾸도록 하자.</p>
+<pre><code>$ rbenv versions
+  system
+* 2.4.2 (set by /opt/boxen/rbenv/version)
+  2.6.0
+
+$ rbenv global
+2.4.2
+
+$ rbenv version
+2.4.2 (set by /opt/boxen/rbenv/version)
+
+$ rbenv global 2.6.0
+
+$ rbenv version
+2.6.0 (set by /opt/boxen/rbenv/version)
+</code></pre>
+
+<p><code>2.4.x</code> 에 설치했던 gem 들을 <code>2.6.0</code> 에도 설치되게 하고 싶었으나, 적당한 명령어를 찾지 못했고(<code>rehash</code> 는 아니었다), 다시 생각해보니 프로젝트에서 실제 필요로 할때 <code>Bundler</code> 로 그때그때 수행하면 될테니 그리 신경 쓸 이슈는 아닌 것 같다.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

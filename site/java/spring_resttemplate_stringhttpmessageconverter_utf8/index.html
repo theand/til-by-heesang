@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Spring RestTemplate의 StringMessageConverter에 UTF-8 인코딩 지정하기 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Spring RestTemplate\uc758 StringMessageConverter\uc5d0 UTF-8 \uc778\ucf54\ub529 \uc9c0\uc815\ud558\uae30";
+    var mkdocs_page_input_path = "java/spring_resttemplate_stringhttpmessageconverter_utf8.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Spring RestTemplate의 StringMessageConverter에 UTF-8 인코딩 지정하기</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="spring-resttemplate-stringmessageconverter-utf-8">Spring RestTemplate의 StringMessageConverter에 UTF-8 인코딩 지정하기</h1>
+<h2 id="_1">발단</h2>
+<p>레거시 코드를 수정하다가 <code>HttpUtil</code> 이라는 유틸클래스로 <code>Apache HTTP Client</code>를 래핑해서 http requst/response 를 처리하는 코드가 있었는데, 너무 못생기고 마음에 들지 않아서 스프링 <code>RestTemplate</code>으로 바꿔넣고 싶었다. 다른 로직엔 가능한 손 안대고 request, reponse 부분만 바꿔치웠다. 그런데 테스트를 해보니, 한글 파라메터가 제대로 인코딩되지 않은 상태로 넘어가고 있었다. 그리하여 원인을 추적해봄.</p>
+<h2 id="1-xml-config">1차 시도 - xml-config 에서 처리?</h2>
+<p><code>StringHttpMessageConverter</code> 라는 것이 관여하고 있었고, 여기서 <code>UTF-8</code> 인코딩을 하지 못했다. <code>restTemplate</code> 빈 설정에 <code>StringHttpMessageConverter</code> 을 <code>UTF-8</code> 을 디폴트 캐릭터셋으로 설정하여 주입하는 법을 찾아내고 싶었다. 당연히 있을 것이라 생각했는데, 찾지 못했다. 억지로 설정을 우겨넣을 순 있었다. 요즘 시대에 안 맞는 xml config 이라서 잘 안 나오나 생각했는데 사후에 다시 보니 딱히 그런 이유 때문은 아니었다. 그냥 그런 방법이 없었다고 할 수 밖에 없다.</p>
+<p>기존 설정</p>
+<pre><code class="xml">&lt;bean id=&quot;restTemplate&quot; class=&quot;org.springframework.web.client.RestTemplate&quot;&gt;
+    &lt;constructor-arg ref=&quot;httpClientRequestFactory&quot; /&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>꾸역꾸역 넣어본 설정</p>
+<pre><code class="xml">&lt;bean id=&quot;restTemplate&quot; class=&quot;org.springframework.web.client.RestTemplate&quot;&gt;
+    &lt;constructor-arg ref=&quot;httpClientRequestFactory&quot; /&gt;
+    &lt;property name=&quot;messageConverters&quot;&gt;
+        &lt;list&gt;
+            &lt;ref bean=&quot;stringHttpMessageConverter&quot; /&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&quot;stringHttpMessageConverter&quot; class=&quot;org.springframework.http.converter.StringHttpMessageConverter&quot;&gt;
+    &lt;constructor-arg&gt;
+        &lt;bean class=&quot;java.nio.charset.Charset&quot; factory-method=&quot;forName&quot;&gt;
+            &lt;constructor-arg value=&quot;UTF-8&quot; /&gt;
+        &lt;/bean&gt;
+    &lt;/constructor-arg&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>이렇게 하면 원하는대로 <code>StringHttpMessageConverter</code>를 가진 <code>RestTemplate</code>를 쓸 수 있긴 하지만, 내가 원하는 요구사항은 단지 그것이 아니었기에 문제.  이렇게 하면, <code>RestTemplate</code> 의 기본 converters 리스트가 여러개 있는데, 위와 같이 설정하면 그 컨버터 리스트가 싹 날아가고 위에 적은대로만 생기는데 이게 코드 다른 부분에 어떤 영향을 줄지 검증할 수가 없었다.</p>
+<p>원하는 바를 더 정확히 하자면</p>
+<ol>
+<li><code>restTemplate</code> 를 선언하는데</li>
+<li>디폴트로 가지는 컨버터 리스트를 다 갖고 있으면서</li>
+<li>그 중에서 <code>StringHttpMessageConverter</code>는 <code>UTF-8</code>을 디폴트 캐릭터셋으로 가지고 있도록 만들고 싶은데</li>
+<li>가능한 한 침습적이지 않은 수정으로 했으면 좋겠다.</li>
+</ol>
+<p>이어서, 좀더 찾아보기로 했다.</p>
+<h2 id="2-">2차 시도 - 로딩되고 나서 처리?</h2>
+<p>기존 컨버터 리스트를 유지하면서  <code>StringHttpMessageConverter</code>를 <code>UTF-8</code>로 새로 객체를 만들어서 넣는 방법을 생각해보았다.</p>
+<p>검색해서 나온 코드 중에 자바로 리스트를 얻어서 그냥 추가하는 코드가 있었는데, 그걸 지금 작업하는 코드에 대충 맞게 적용해보았다.</p>
+<pre><code class="java">   @Override
+    public void afterPropertiesSet() throws Exception {
+        restTemplate.getMessageConverters().add(new StringHttpMessageConverter(Charset.forName(&quot;UTF-8&quot;)));
+    }
+</code></pre>
+
+<p>그런데, 문제는 이렇게 하니 컨버터 리스트 마지막에 <code>StringHttpMessageConverter</code>가 들어가서 실행해보면 디폴트 컨버터 리스트에 있던 <code>StringHttpMessageConverter</code>가 먼저 반응을 해서 이렇게 추가한 컨버터는 쓸모가 없었다.</p>
+<p>... 하지만 사후에 보니, 이때 내가 너무 성급하게 테스트를 했기 때문에 이 방법으로 해결이 안된다고 착각했던 것이었다.</p>
+<pre><code class="java">restTemplate.getMessageConverters().add(new StringHttpMessageConverter(Charset.forName(&quot;UTF-8&quot;)));
+</code></pre>
+
+<p>를 하면 리스트 맨 마지막에 들어가는 것 때문에 문제였으니,</p>
+<pre><code class="java">restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName(&quot;UTF-8&quot;)));
+</code></pre>
+
+<p>으로 하면 리스트 맨 앞에 넣어서 해결이 됐을 것이다. 다른 시도를 더 하고 검색을 더 해보다가 검색 내용 중에 이 부분 코드를 너무 대충 읽었다는걸 나중에 깨달음.</p>
+<p>물론, 컨버터 리스트에 다른 캐릭터셋을 디폴토 캐릭터셋으로 가지는 <code>StringHttpMessageConverter</code>  객체가 2개 남아있는다는 문제는 생긴다. 컨버터 리스트를 루프를 돌면서, 하나는 지우고 하나만 남길 수도 있겠는데 그런 더러운 코드를 필요하도록 스프링을 만들진 않았을거라고, 내가 아직 모르는게 있을거라고 믿고 싶었다.</p>
+<p>아무튼 2차 시도에서는, 이게 원하는대로 작동 안한다고 생각하고 이게 말이 되나 싶어서 스프링 소스를 뒤져보게 되었다. 실은, 이 단계에 오기 전에 스프링 소스를 보려고 했는데 사내 메이븐 저장소의 문제인지, 스프링 최신 버전의 소스가 자동으로 다운받아지지 않아서 인텔리제이에서 오리지널 소스를 열지 못하는 바람에 귀찮아서 자세히 보지 않고 있었다.</p>
+<h2 id="3-">3차 시도 - 스프링 소스를 보고 왜 이런지 이해를 해보자.</h2>
+<h3 id="resttemplate">RestTemplate</h3>
+<p>source: https://github.com/spring-projects/spring-framework/blob/master/spring-web/src/main/java/org/springframework/web/client/RestTemplate.java#L140</p>
+<p><code>RestTemplate</code>의 소스에서 생성자를 보면, 다르게 설정할 여지 없이 <code>new StringHttpMessageConverter()</code> 를 쌩으로 넣어주고 있다.</p>
+<pre><code class="java">public RestTemplate() {
+    this.messageConverters.add(new ByteArrayHttpMessageConverter());
+    this.messageConverters.add(new StringHttpMessageConverter());
+    this.messageConverters.add(new ResourceHttpMessageConverter(false));
+
+//생략
+}
+</code></pre>
+
+<h3 id="stringhttpmessageconverter">StringHttpMessageConverter</h3>
+<p>source: https://github.com/spring-projects/spring-framework/blob/master/spring-web/src/main/java/org/springframework/http/converter/StringHttpMessageConverter.java</p>
+<p><code>StringHttpMessageConverter</code>의 소스를 찾아가보면, 자비 없게도 <code>StandardCharsets.ISO_8859_1</code> 를 디폴트 캐릭터 셋으로 하고 있다. 생성자에 디폴트 캐릭터셋을 넣지 않으면 set 메소드도 없어서 이상했다(는 나중에 오해로 밝혀짐).</p>
+<pre><code class="java">/**
+ * The default charset used by the converter.
+ */
+public static final Charset DEFAULT_CHARSET = StandardCharsets.ISO_8859_1;
+
+/**
+ * A default constructor that uses {@code &quot;ISO-8859-1&quot;} as the default charset.
+ * @see #StringHttpMessageConverter(Charset)
+ */
+public StringHttpMessageConverter() {
+    this(DEFAULT_CHARSET);
+}
+
+/**
+ * A constructor accepting a default charset to use if the requested content
+ * type does not specify one.
+ */
+public StringHttpMessageConverter(Charset defaultCharset) {
+    super(defaultCharset, MediaType.TEXT_PLAIN, MediaType.ALL);
+}
+</code></pre>
+
+<h3 id="formhttpmessageconverter">FormHttpMessageConverter</h3>
+<p>왜 이러는지 이해가 안되서, 다른 메시지 컨버터에서는 인코딩을 어떻게 처리하는지 찾아보았다. FormHttpMessageConverter 룰 보기로 함.</p>
+<p>다행히도 디폴트 캐릭터셋이 제정신이었다.</p>
+<pre><code class="java">    /**
+     * The default charset used by the converter.
+     */
+    public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
+</code></pre>
+
+<p>source: https://github.com/spring-projects/spring-framework/blob/master/spring-web/src/main/java/org/springframework/http/converter/FormHttpMessageConverter.java#L99</p>
+<p>이 상수를 어떻게 쓰는지 찾아가 보니 문제의 원인을 깨달을 수 있었다.</p>
+<pre><code class="java">    public FormHttpMessageConverter() {
+        this.supportedMediaTypes.add(MediaType.APPLICATION_FORM_URLENCODED);
+        this.supportedMediaTypes.add(MediaType.MULTIPART_FORM_DATA);
+
+        StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
+        stringHttpMessageConverter.setWriteAcceptCharset(false);  // see SPR-7316
+
+        this.partConverters.add(new ByteArrayHttpMessageConverter());
+        this.partConverters.add(stringHttpMessageConverter);
+        this.partConverters.add(new ResourceHttpMessageConverter());
+
+        applyDefaultCharset();
+    }
+</code></pre>
+
+<p><code>FormHttpMessageConverter</code> 여기에서도 <code>StringHttpMessageConverter</code>를 아래와 같이 디폴트 캐릭터셋 <code>ISO-8859-1</code> 인채로 추가하고 있었다.</p>
+<pre><code class="java">StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
+</code></pre>
+
+<p>다만 생성자 마지막에 <code>applyDefaultCharset()</code> 이라는 메소드를 호출하고 있었다.</p>
+<pre><code class="java">    private void applyDefaultCharset() {
+        for (HttpMessageConverter&lt;?&gt; candidate : this.partConverters) {
+            if (candidate instanceof AbstractHttpMessageConverter) {
+                AbstractHttpMessageConverter&lt;?&gt; converter = (AbstractHttpMessageConverter&lt;?&gt;) candidate;
+                // Only override default charset if the converter operates with a charset to begin with...
+                if (converter.getDefaultCharset() != null) {
+                    converter.setDefaultCharset(this.charset);
+                }
+            }
+        }
+    }
+</code></pre>
+
+<p>source : https://github.com/spring-projects/spring-framework/blob/master/spring-web/src/main/java/org/springframework/http/converter/FormHttpMessageConverter.java#L182</p>
+<h3 id="abstracthttpmessageconverter">AbstractHttpMessageConverter</h3>
+<p>source : https://github.com/spring-projects/spring-framework/blob/master/spring-web/src/main/java/org/springframework/http/converter/AbstractHttpMessageConverter.java#L115</p>
+<p><code>StringHttpMessageConverter</code>에 setter가 없어서 이건 대체 무슨 인터페이스가 이런가 싶었는데, 내가 소스를 깃헙 웹인터페이스로 코드로 읽고 있었기 때문에 상속받은 클래스에 있던 setter의 존재를 바로 찾아내지 못했던거였다. 근데, 다만 이 setter도 스프링 4.3 이후에 생긴 것으로 보이는데, 이전 버전을 썼으면 이것도 사용하기 어려웠을 듯 하다.</p>
+<pre><code class="java">    /**
+     * Set the default character set, if any.
+     * @since 4.3
+     */
+    public void setDefaultCharset(@Nullable Charset defaultCharset) {
+        this.defaultCharset = defaultCharset;
+    }
+</code></pre>
+
+<h2 id="_2">마무리</h2>
+<p>여기까지 진행해오는 동안 오해하거나 이상했던 부분들의 미스테리가 다 풀렸다.</p>
+<ul>
+<li><code>RestTemplate</code> 에 들어가는 디폴트 컨버터 중 하나인 <code>StringHttpMessageConverter</code> 의 디폴트 캐릭터셋을 <code>UTF-8</code>로 선언시점에 지정할 방법은 없었음. xml config 이라서 구닥다리 방식이라 검색이 안되는게 아니었음.</li>
+<li>setter가 없다고 생각했던 이유는, <code>StringHttpMessageConverter</code>에 있는게 아니라 <code>AbstractHttpMessageConverter</code> 에 있는거였기 때문에.</li>
+<li>결국 런타임 코드로 어딘가에 넣어서 로딩 시점 어딘가에서 컨버터 리스트에 객체를 하나 새로 만들어 넣던가, 컨버터 리스트를 순회하면서 setter 로 디폴트 캐릭터셋을 바꿔주든가 둘중 하나를 해야함.</li>
+<li>디폴트 컨버트 리스트에 <code>add(0, new ... )</code> 으로 런타임에 넣기.</li>
+<li>인스턴스가 두개 들어가 있는 부분이 마음에 걸리면, <code>applyDefaultCharset()</code> 같은 코드를 만들어서 루프 돌면서 setter로 처리해야함.</li>
+<li>그리고 애초에 프로젝트 다른 부분에서 안 쓰이던 <code>RestTemplate</code>의 파라메터 전송에서 인코딩 문제를 이번에 겪게 된 것은 다음과 같은 이유였다고 생각이 된다.</li>
+<li>기존 레거시 코드를 유지하면서 보내다보니, <code>ResponseEntity&lt;String&gt; resp = restTemplate.exchange(requestUrl, HttpMethod.GET, entity, String.class);</code> 와 같이 <code>String</code> 클래스를 보내야했다. 코드 다른 부분에서 json body를 한땀한땀 <code>String</code> 으로 조합해서 만들어내는 부분이 있었기 때문에...</li>
+<li>기존에 <code>RestTemplate</code> 를 쓰던 비교적 레거시가 아니었던 코드들은 json을 <code>String</code> 으로 조합해서 보내는 것 같은 일을 하지 않았고, <code>FormHttpMessageConverter</code> 같은걸 썼기 때문에 인코딩 문제를 겪을 일이 없었다.</li>
+</ul>
+<hr />
+<p>여기까지 오는데 참고한 그외 다른 링크들
+- https://gist.github.com/ucpwang/949145408a12bb40a671#file-README-md
+- https://stackoverflow.com/questions/29392422/how-can-i-tell-resttemplate-to-post-with-utf-8-encoding
+- http://bcuts.tistory.com/32
+- http://www.javarticles.com/2015/06/spring-static-factory-method-example.html</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

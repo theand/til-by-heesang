@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>console 객체의 여러가지 사용법 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "console \uac1d\uccb4\uc758 \uc5ec\ub7ec\uac00\uc9c0 \uc0ac\uc6a9\ubc95";
+    var mkdocs_page_input_path = "js/console.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../jquery-2.1.1.min.js" defer></script>
+  <script src="../modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>console 객체의 여러가지 사용법</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="console">console 객체의 여러가지 사용법</h1>
+<p>source : https://medium.com/@mattburgess/beyond-console-log-2400fdf4a9d8</p>
+<p>모르던 것들도 몇개 보여서 필요한 부분만 메모.</p>
+<ul>
+<li><code>%c</code> 는 css의 c라고 기억하면 편할듯.</li>
+<li><code>%o</code> 라고 하면 객체를 바로 찍을 수 있음.</li>
+<li><code>console.table()</code>에 두번째 파라메터로 컬럼 이름 배열 넘기면 첫번째 객체에서 pluck 한 내용만 표로 보여줌. 렌더링된 표에서 컬럼 누르면 정렬도 됨.</li>
+<li><code>console.trace()</code> - <code>console.log</code> 만으로는 찾기힘들때 스택트레이스 보여줌.</li>
+</ul>
+<hr />
+<p>다른거 없나하고 <a href="https://developer.mozilla.org/en-US/docs/Web/API/console">MDN</a> 조금 더 찾아봄.</p>
+<h1 id="_1">객체 로그 정확하게 남기기</h1>
+<p>https://developer.mozilla.org/en-US/docs/Web/API/Console/log</p>
+<blockquote>
+<p>Don't use console.log(obj);,
+use console.log(JSON.parse(JSON.stringify(obj)));.</p>
+</blockquote>
+<p>그동안 미심쩍게 느끼던 부분이었는데, 이 주의사항을 이제야 확인함.</p>
+<p>단순객체라면 바로 출력되서 크게 영향 없지만, 깊게 내포된 객체(deeply-nested object)를 그냥 <code>console.log()</code> 으로 객체 바로 찍으면, 깊게 들어가야 볼 수 있는 객체 정보는 콘솔에서 화살표 누르는 시점에 조회가 되서 값이 바뀌어 있을 수 있다. 라이프 사이클에 따라 조회가 안되는 경우도 있을 것 같다(그동안 내가 미심쩍게 생각하던 부분). 이 작동에 대한 공식적으로 문서화 된 부분은 아직 찾지는 못했는데, 눈으로 바로 볼 수 있을만한 부분까지는 표시하고(검색결과로는 설명에 따라 2depth라고도 하고, 그때그때 다르다고도 하고) 그 이상 뎁스는 생략해서 보여준다고. 아마 퍼포먼스 이슈 때문에 lazy 하게 작동하는 듯.</p>
+<p>예)</p>
+<p><img alt="단순 console.log" src="../console.log-simple.png" /></p>
+<p><code>obj.b.c</code>에 2가 들어있는 <code>obj</code> 객체를 그냥 로깅하면 <code>obj.b</code>의 값은 생략되어 표시되는데, <code>obj.b.c</code> 의 값을 3으로 바꿔 버린 다음에 위에서 로깅해놓았던 <code>obj</code> 객체의 생략했던 부분을 펼치면, 원래 로그를 찍었던 시점의 값(<code>2</code>)이 아니라 현재 시점의 <code>obj.b</code>의 값(<code>3</code>)이 보이고 대체로 이것은 원하는 작동이 아닐 것이다.</p>
+<p><img alt="stringify console.log" src="../console.log-stringify.png" /></p>
+<p><code>obj.b.c</code>에 2가 들어있는 <code>obj</code> 객체를 stringify해서 로그를 남기면, 이때도 <code>obj.b</code>의 값은 생략되어 보이지만, 로깅을 하고 나서 <code>obj.b.c</code>의 값을 바꾸고 아까 생략된 부분을 펼쳐도 아까 로그 남긴 시점의 값이 제대로 보인다.</p>
+<hr />
+<p>위와 같은 케이스를 경험했던건 아니고, 그동안 미심쩍게 느꼈던 부분은 복잡한 페이지에서 객체 로그를 잔뜩 찍어놓고 나중에 몰아서 객체 세부 정보 보려고 하면 값이 안 보일때가 있어서 <code>console.log</code>가 "리터럴리하게" 있는 그대로 출력을 해놓는게 아니라 객체의 라이프사이클과 뭔가 관련이 있는 것 같다고 의심만 했었는데, 이 부분을 읽고 좀더 확실히 알게됨.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

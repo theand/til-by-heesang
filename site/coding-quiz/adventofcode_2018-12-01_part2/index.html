@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>문제 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\ubb38\uc81c";
+    var mkdocs_page_input_path = "coding-quiz/adventofcode_2018-12-01_part2.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>문제</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">문제</h1>
+<p>https://adventofcode.com/2018/day/1#part2</p>
+<p>part 1 에서의 동일한 입력과 동일한 주파수 조정을 사용하되, 조정된 주파수 값이 두번째로 반복해서 나타나는 주파수의 값을 찾아라. 입력 리스트를 반복했을때 반복해서 나타나는 주파수가 없다면 리스트를 처음부터 반복한다.</p>
+<h1 id="_2">풀이</h1>
+<p>첫번째 시도 : 메소드 체인을 걸다가 each 에서 조건이 충족되었을때 멈출 방법을 모르겠어서 예외를 던지도록 해버렸다. 어느 언어로하든 map/reduce/each 등에서 중간에 멈추도록 하는 직관적인 방법을 아직 못 찾았다.</p>
+<pre><code class="ruby">
+
+class DeviceFrequency
+
+  def self.find_first_freq_reached_twice input, current
+    reached = { 0 =&gt; true}
+    answer = nil
+    begin
+      input.split(&quot;,&quot;)
+        .map { |x| x.split(&quot;\n&quot;)}
+        .flatten
+        .cycle
+        .each do |x|
+          current = current + x.to_i
+          if reached.has_key? current and answer.nil?
+            answer = current
+            raise &quot;answer found&quot;
+          else
+            reached[current] = true
+          end
+        end
+    rescue
+      print &quot;answer found&quot;
+    end
+    answer
+  end
+
+end
+</code></pre>
+
+<p>두번째 시도 : 동작하던 첫번째 코드를 조금 개선하였다.</p>
+<pre><code class="ruby">class DeviceFrequency
+
+  def self.find_first_freq_reached_twice(input, current)
+    reached = {0 =&gt; true}
+    input.split(&quot;,&quot;)
+      .map {|x| x.split(&quot;\n&quot;)}
+      .flatten
+      .cycle
+      .each do |x|
+        current = current + x.to_i
+        if reached.has_key? current
+          return current
+        end
+        reached[current] = true
+      end
+  end
+
+end
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

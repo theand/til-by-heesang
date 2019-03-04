@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>개요 - Heesang's TIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\uac1c\uc694";
+    var mkdocs_page_input_path = "python/print_unicode_codepoint.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Heesang's TIL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Heesang's TIL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>개요</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">개요</h1>
+<p>단톡방에서 메시지를 보게 되었고, 무슨 유니코드 문자로 만들었을까 하는 얘기에 나도 궁금해져서 유니코드 포인트를 확인해보고 싶었다.</p>
+<p><img alt="image" src="../noise_unicode_string.png" /></p>
+<h1 id="_2">경과</h1>
+<p>파이썬과 유니코드에 대해 아래와 같은 것을 찾아보았다.</p>
+<h2 id="explicit-unicode-literals">Explicit Unicode literals</h2>
+<p><code>u'text'</code> 와 같이 유니코드 문자열을 명시하는 것인데.. 파이썬2에 있다가 파이썬3 생기면서 사라졌다가 파이썬 3.3에서 다시 생긴 문법이라는 것 같다. 이게 왜 필요한가, 이게 사라졌다가 다시 생긴 이유는 무엇인가...는 오늘 파보기엔 시간이 없어서 생략.</p>
+<blockquote>
+<p>Changed in version 3.3: For backwards compatibility with the Python 2 series, the u prefix is once again permitted on string literals. It has no effect on the meaning of string literals and cannot be combined with the r prefix.</p>
+</blockquote>
+<p>source :
+- https://www.python.org/dev/peps/pep-0414/
+- https://docs.python.org/3.7/library/stdtypes.html#text-sequence-type-str
+- https://docs.python.org/3.7/reference/lexical_analysis.html#strings
+- https://docs.python.org/3/howto/unicode.html</p>
+<h2 id="ord-chr">ord, chr</h2>
+<p><code>ord()</code> - 주어진 문자의 유니코드 문자의 유니코드 코드 포인트 값을 정수로 리턴.</p>
+<p><code>chr()</code> - 주어진 유니코드 코드 포인트 정수값에 대한 문자를 리턴함.</p>
+<p>파이썬2에서는 바이트스트링과 유니코드객체가 구분되어서 ord와 chr, unichr 함수가 있었는데, 파이썬3에서는 ord와 chr로 통일.</p>
+<hr />
+<p>source :
+- https://docs.python.org/3.7/library/functions.html#ord
+- https://docs.python.org/3.7/library/functions.html#chr
+- https://docs.python.org/2.7/library/functions.html#ord</p>
+<h2 id="_3">문자열을 한글자씩 나누기</h2>
+<p>대충  <code>.split("")</code> 을 하면 한글자씩 나눠지지 않을까 했는데(ruby, js 등에서 하듯이), 파이썬에서는 empty separator를 허용하지 않았다.</p>
+<p>cpython 에서는 찾기 힘들어서, pypy에서 <code>.split</code> 의 구현을 찾아 봄.</p>
+<ul>
+<li>https://bitbucket.org/pypy/pypy/src/7eccdb844fb8bfbcb1a647a43118052599df6d28/rpython/rlib/rstring.py?at=default&amp;fileviewer=file-view-default#rstring.py-28</li>
+<li>https://bitbucket.org/pypy/pypy/src/7eccdb844fb8bfbcb1a647a43118052599df6d28/pypy/objspace/std/stringmethods.py?at=default&amp;fileviewer=file-view-default#stringmethods.py-570</li>
+</ul>
+<p>검색해보니 권장하는 방법은 <code>list(str)</code> 같이 <code>list()</code> 생성자를 사용하는 것.</p>
+<p>source :
+- https://docs.python.org/3.7/library/stdtypes.html#list
+- https://docs.python.org/3.7/library/stdtypes.html#text-sequence-type-str</p>
+<h2 id="uxxxx">유니코드 코드포인트를 <code>U+XXXX</code> 포맷으로 출력하기</h2>
+<p>코드포인트가 integer인데, 유니코드 검색하는 사이트 등에서는 <code>U+XXXX</code> 포맷으로 쓰니까 이렇게 출력하는게 편할 것 같은데, 내장된 포맷터는 없는 모양. <code>str.format()</code> 으로 넣는 수 밖에 없는듯.</p>
+<p>source :
+- https://docs.python.org/3.7/library/stdtypes.html#str.format
+- https://docs.python.org/3.7/library/string.html#formatstrings
+- https://stackoverflow.com/questions/42757013/in-python-3-how-to-print-unicode-codepoint-as-u-u</p>
+<h1 id="_4">결과</h1>
+<p>아래와 같이 하면 원 문자열의 각 글자마다의 코드포인트 값이 찍힌다.</p>
+<p>에디터에 따라 네모박스로 깨져서 표시되기도 함.</p>
+<pre><code class="python">u = u'̛̬̣̖̻̝͙.̴̹̯̝̤ ̺͕̼̫͉̯.̢͖̘̯̮̣ ٠치̵̠͚̹ͅ지̘̣͓͍직̳̠̠͢.̢̳̯̹.̵̪̰̪̗̭̣̞ ̷͎͖̩̪̞̦안̟̱녕̣̭하̰̖̯̻͎͕세̗요̱̱̦̠͙̲.͕̦̰̯̜͇̙͟.̶͍̘치٧̰.̬̙̩͓̠̤̭.̺̙̤̲ ̗  .̬̮지.̬ ̦͔̘̣͈͕͇͟.͈̝͈̲̤̹ ̧̭̼.̧͎̭ ͢직 ̩안 ͖̪̖̲̼ͅ ͕͈̗ ̙̗͙̞ͅ ̙̥̩̘̦̭̣́녕 ̜͔̤͖̟̻̯히계 ̡̦세요 ̘̻̹̞̗̭́'
+
+for i in list(u): print('U+{0:04X} \\U{0:08X} {1}'.format(ord(i),i))
+</code></pre>
+
+<p>http://inamidst.com/stuff/unidata/ 에서 보니 <code>Combining Diacritical Marks</code> block 에 해당하는 문자가 많은 듯.</p>
+<p>http://graphemica.com/ 에 codepoint 를 넣어보면 각 문자의 정보를 볼 수 있다.</p>
+<p>see also http://graphemica.com/blocks/combining-diacritical-marks</p>
+<p>TODO: 궁금한 점 - http://graphemica.com/0319 hex가 <code>0319</code> 이어야할 것 같은데, <code>UTF-8</code> 에서만 <code>cc99</code> 로 나온다. 왜 그런지?</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

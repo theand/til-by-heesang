@@ -1,4 +1,6 @@
 site_name: Heesang's TIL
+docs_dir: md
+site_dir: docs
 nav:
         - Home: index.md
 theme: readthedocs

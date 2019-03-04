@@ -31,19 +31,19 @@ $ convert original.png -transverse transverse.png
 
 
 ### 1. original
-!['1. original.png'](./imagemagick/1.original.png)
+!['1. original.png'](./1.original.png)
 
 ### 2. flip
-!['2. flip.png'](./imagemagick/2.flip.png)
+!['2. flip.png'](./2.flip.png)
 
 ### 3. flop
-!['3. flop.png'](./imagemagick/3.flop.png)
+!['3. flop.png'](./3.flop.png)
 
 ### 4. transpose
-!['4. transpose.png'](./imagemagick/4.transpose.png)
+!['4. transpose.png'](./4.transpose.png)
 
 ### 5. transverse
-!['5. transverse.png'](./imagemagick/5.transverse.png)
+!['5. transverse.png'](./5.transverse.png)
 
 ## 결과
 

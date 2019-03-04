@@ -7,6 +7,7 @@ Cli
 ====
 
 * [Case Insensitive Search In Less](./cli/case-insensitive-search-in-less.md)
+* [Imagemagick](./cli/imagemagick.md)
 * [Readme](./cli/README.md)
 * [Top 10 Command From History](./cli/top_10_command_from_history.md)
 
@@ -26,8 +27,10 @@ Java
 ====
 
 * [Gradle Jetty To Gretty](./java/gradle_jetty_to_gretty.md)
+* [Gradle Wrapper](./java/gradle_wrapper.md)
 * [Http Status Code Compare](./java/http_status_code_compare.md)
 * [Read Safely Nested Object](./java/read_safely_nested_object.md)
+* [Servlet Api 3.0 3.1](./java/servlet-api_3.0_3.1.md)
 * [Spring Resttemplate Stringhttpmessageconverter Utf8](./java/spring_resttemplate_stringhttpmessageconverter_utf8.md)
 
 Jetbrains

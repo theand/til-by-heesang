@@ -7,10 +7,4 @@ Today I Learned (오늘 내가 배운 것)
 
 ----
 
-올라온 문서의 목록은 [index.md](./index.md)에서 확인할 수 있습니다.
-
-index.md 파일의 갱신은 로컬에서 [build.py](./build.py)를 실행한 후 커밋합니다.
-
-----
-
 *TIL: thoughtbot 사의 Today I Learned (https://github.com/thoughtbot/til )에서 퍼져나간 지식정리,공유 방식.

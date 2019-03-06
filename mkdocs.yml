@@ -1,5 +1,5 @@
 site_name: Heesang's TIL
 docs_dir: md
 nav:
-        - Home: index.md
+        - 'By Categories': index.md
 theme: readthedocs

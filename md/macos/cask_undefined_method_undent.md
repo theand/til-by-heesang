@@ -21,7 +21,7 @@ Error: Cask 'p4merge' is unreadable: undefined method `undent' for #<String:0x00
 
 처음에는 `brew cask edit p4merge` 라는 명령어를 사용해 시도해보았는데, 이때 로딩되는 레서피는 최신 버전의 레서피라서 대략 `/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/Casks/` 에 위치한 파일을 읽어오고, 최신 버전에는 대체로 위와 같은 `undent` 사용한 코드를 찾을 수가 없었다.
 
-평소 사용하는 [ag](https://geoff.greer.fm/ag/)를 이용해 아무리 파일 시스템 적당한 곳을 검색해도 나오지 않았는데, 구글링을 해서 보니 숨김 디렉토리에 위치해 있다보니 `ag` 기본설정으로는 검색이 되지 않았다. 다음과 같은 경로를 뒤져보니 `/usr/local/Caskroom/p4merge/.metadata/` `undent` 가 사용된 이전 버전의 레서피를 찾을 수 있었다. 찾아서 제거하니 원래 실행하려던 명령어도 제대로 실행되었다.
+평소 사용하는 [ag](https://geoff.greer.fm/ag/)를 이용해 아무리 파일 시스템 적당한 곳을 검색해도 나오지 않았는데, 구글링을 해서 보니 숨김 디렉토리에 위치해 있다보니 `ag` 기본설정으로는 검색이 되지 않았다. 다음과 같은 경로를 뒤져보니 `/usr/local/Caskroom/p4merge/.metadata/` 의 하위 경로에서 `undent` 가 사용된 이전 버전의 레서피를 찾을 수 있었다. 찾아서 제거하니 원래 실행하려던 명령어도 제대로 실행되었다.
 
 
 참고

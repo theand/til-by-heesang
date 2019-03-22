@@ -1,5 +1,5 @@
 
-# MkDocs로 만든 사이틑를 netlify 로 배포하기
+# [MkDocs로 만든 사이트](./mkdocs.md)를 netlify 로 배포하기
 
 ## netlify
 

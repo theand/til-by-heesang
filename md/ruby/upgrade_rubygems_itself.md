@@ -30,6 +30,7 @@ update_rubygems
 `gem update --system` 커맨드가 문제가 있었던 아주 옛날 버전에서나 수동 업그레이드를 하기 위해 위 두줄의 커맨드가 필요했고, 지금은 `gem update --system` 으로 해결됨.
 
 source :
+
 - https://guides.rubygems.org/command-reference/#gem-update
 - https://rubygems.org/gems/rubygems-update
 - https://github.com/rubygems/rubygems/blob/master/bin/update_rubygems

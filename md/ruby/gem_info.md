@@ -31,5 +31,6 @@ rails (5.2.2, 5.2.1.1, 5.2.1, 5.2.0, 5.1.6.1, 5.1.6, 5.1.5, 5.1.4, 5.1.3, 5.1.2,
 이정도 밖에 보여주지 않는다. https://rubygems.org/gems/rails/ 에서 보여주는 것에 비해 노출되는 정보가 너무 빈약한데, 검색해봐도 아직 마땅한 대안은 눈에 띄지 않았다.
 
 source :
+
 - https://guides.rubygems.org/command-reference/#gem-info
 - https://github.com/rubygems/rubygems/blob/master/History.txt

@@ -8,12 +8,15 @@ https://www.youtube.com/watch?v=H5i1gdwe1Ls
 basecamp 3의 프로덕션 코드를 가지고 얘기를 진행.
 
 code comments
+
 - explain magic variable -> extract an explaining variable -> inline variable to constant -> move to private -> change order by table of contents
 
 DSL
+
 - `find_or_create_by` 가 원하는 흐름이 아니라 코드가 장황해진 부분을 `create_or_find_by` 을 만들어서 해결.
 
 후기
+
 - DHH가 라이브 리팩토링 코딩하면서 썰 푸는거라 '저 사람은 저기에서 저런 선택을 하는군'' 하는 정도의 감상으로 봄.
 - basecamp 정도 되는 성숙한 서비스의 코드베이스가 어떤지 엿보는 재미도..
 - 레일즈로 블로그 만들기 데모로부터 십몇년이 지났는데 아직 TextMate를 쓰시는군.
@@ -30,8 +33,10 @@ https://www.youtube.com/watch?v=m1jOWu7woKM
 https://www.youtube.com/watch?v=D7zUOtlpUPw
 
 - `Current`
+
   https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html
 - `Concern`
+
   https://api.rubyonrails.org/classes/ActiveSupport/Concern.html
 
 - 글로벌을 써야할때면 관리할 수 있게 써라.  `Current`는 per-request 속성을 전체 시스템에서 쉽게 접근할 수 있게 해준다.

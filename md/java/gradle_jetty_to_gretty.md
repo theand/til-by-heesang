@@ -38,7 +38,7 @@ after
 apply from: 'https://raw.github.com/gretty-gradle-plugin/gretty/master/pluginScripts/gretty.plugin'
 ```
 
-에러남
+아래 설정으로는 에러가 났음.
 
 ```
     plugins {

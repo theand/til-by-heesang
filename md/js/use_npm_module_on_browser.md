@@ -18,11 +18,11 @@
 - 사용하려는 ics 모듈을 로딩하는 코드를 담은 저장소를 하나 만든다. : https://github.com/theand/ics-browserify
 - require로 ics를 가져와서 window 네임스페이스에 모듈을 넣어버린다. 필요없는 단계일수도 있지만 여러번 테스트하기 귀찮아서 넣어버렸다.
 
-  ```javascript
-  const ics = require('ics')
+```javascript
+const ics = require('ics')
 
-  window.ics = ics;
-  ```
+window.ics = ics;
+```
 
 - browserify 한다. require() 로 불러온 모듈들의 의존성을 알아서 파일 하나로 합쳐준다.
   `browserify main.js -o bundle.js`

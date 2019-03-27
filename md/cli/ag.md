@@ -6,6 +6,7 @@ ag 는 grep 보다 개선되었다고 주장하는 ack 의 클론으로 출발�
 내가 주로 사용하는 케이스에서 사용법이나 결과 화면이 마음에 들어 이걸 주로 사용하고 있다.
 
 source:
+
 - https://geoff.greer.fm/ag/
 - https://github.com/ggreer/the_silver_searcher
 
@@ -63,6 +64,7 @@ $ cat ~/.agignore
 - 파일패턴은 정규표현식(`.*.min.js`)가 아니라 glob 패턴(`*.min.js`)이다. `-G` 옵션에서는 정규표현식을 받기 때문에 헷갈렸다.
 
 ref.
+
 - https://github.com/ggreer/the_silver_searcher/issues/1210
 - https://github.com/ggreer/the_silver_searcher/issues/1251
 - https://github.com/ggreer/the_silver_searcher/issues/111

@@ -16,6 +16,7 @@
 > Changed in version 3.3: For backwards compatibility with the Python 2 series, the u prefix is once again permitted on string literals. It has no effect on the meaning of string literals and cannot be combined with the r prefix.
 
 source :
+
 - https://www.python.org/dev/peps/pep-0414/
 - https://docs.python.org/3.7/library/stdtypes.html#text-sequence-type-str
 - https://docs.python.org/3.7/reference/lexical_analysis.html#strings
@@ -31,6 +32,7 @@ source :
 
 ----
 source :
+
 - https://docs.python.org/3.7/library/functions.html#ord
 - https://docs.python.org/3.7/library/functions.html#chr
 - https://docs.python.org/2.7/library/functions.html#ord
@@ -56,6 +58,7 @@ source :
 코드포인트가 integer인데, 유니코드 검색하는 사이트 등에서는 `U+XXXX` 포맷으로 쓰니까 이렇게 출력하는게 편할 것 같은데, 내장된 포맷터는 없는 모양. `str.format()` 으로 넣는 수 밖에 없는듯.
 
 source :
+
 - https://docs.python.org/3.7/library/stdtypes.html#str.format
 - https://docs.python.org/3.7/library/string.html#formatstrings
 - https://stackoverflow.com/questions/42757013/in-python-3-how-to-print-unicode-codepoint-as-u-u

@@ -30,7 +30,7 @@ before
 
 ```
 apply plugin: "jetty"
-``
+```
 
 after
 

@@ -215,6 +215,7 @@ source : https://github.com/spring-projects/spring-framework/blob/master/spring-
 
 ------
 여기까지 오는데 참고한 그외 다른 링크들
+
 - https://gist.github.com/ucpwang/949145408a12bb40a671#file-README-md
 - https://stackoverflow.com/questions/29392422/how-can-i-tell-resttemplate-to-post-with-utf-8-encoding
 - http://bcuts.tistory.com/32

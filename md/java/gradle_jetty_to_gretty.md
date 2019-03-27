@@ -15,7 +15,8 @@ jetty 플러그인은 gradle 3.0 에서 deprecated 되었고, 4.0 에서 완전�
 
 내 로컬에 설치된 gradle은 5.0 이었음. 이 프로젝트의 기존 개발자들이나 빌드서버의 환경은 아마 4.0 미만이었을걸로 추정됨.
 
-source
+source:
+
 - https://github.com/gradle/gradle/issues/735
 
 ## 해결
@@ -43,6 +44,7 @@ apply from: 'https://raw.github.com/gretty-gradle-plugin/gretty/master/pluginScr
 ```
 
 source :
+
 - https://docs.gradle.org/current/userguide/jetty_plugin.html
 - https://github.com/gretty-gradle-plugin/gretty
 - https://gretty-gradle-plugin.github.io/gretty-doc/Getting-started.html

@@ -14,6 +14,7 @@ Generator
 
 - generator object : iterator의 한 형태. iterable protocol과 iterator protocol을 모두 만족한다.
 - generator function : `function *` 키워드로 정의하고, `yield` 구문을 통해 제어흐름이 멈추었다가 재개되는 함수.
+
   ```javascript
   function* gen() {
     yield 1;

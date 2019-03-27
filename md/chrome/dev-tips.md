@@ -19,8 +19,9 @@ source: https://umaar.com/dev-tips/181-expand-nodes/
 개발자도구 열어놓고 웹페이지에서 `cmd+\` 입력
 
 source:
-https://umaar.com/dev-tips/178-quick-pause-script-execution/
-https://twitter.com/pocketjoso/status/1022582753169158144
+
+- https://umaar.com/dev-tips/178-quick-pause-script-execution/
+- https://twitter.com/pocketjoso/status/1022582753169158144
 
 비고 : 스크립트 실행을 멈춘다는 제목으로 올라왔지만 멈춰서 이동하는 코드 위치가 너무 제각각이어서 다소 불편하고, 원래 팁을 제공한 트위터 유저 의견대로, 상태가 바뀌거나 화면에서 사라지는 요소를 검사할때 유용할 듯.
 
@@ -68,8 +69,8 @@ source : https://umaar.com/dev-tips/98-command-menu/
 
 source :
 
-https://umaar.com/dev-tips/128-blackboxing/
-https://plus.google.com/+UmarHansa/posts/2m8yF7aFonn
+- https://umaar.com/dev-tips/128-blackboxing/
+- https://plus.google.com/+UmarHansa/posts/2m8yF7aFonn
 
 비고 : 디버깅할때 step in, step out 같은거 하다가 jquery 같은거 소스로 들어가면 피곤한데, 블랙박스 처리하면 그걸 막아줌.
 

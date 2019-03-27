@@ -27,16 +27,19 @@ source:
 
 
 before
+
 ```
 apply plugin: "jetty"
 ``
 
 after
+
 ```
 apply from: 'https://raw.github.com/gretty-gradle-plugin/gretty/master/pluginScripts/gretty.plugin'
 ```
 
 에러남
+
 ```
     plugins {
         id "org.gretty" version "2.3.1"

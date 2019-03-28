@@ -1,3 +1,5 @@
+[TOC]
+
 
 # 콘솔에서 rubygems 의 특정 gem 상세 정보 보기
 

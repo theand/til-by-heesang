@@ -1,3 +1,5 @@
+[TOC]
+
 
 til 저장소를 static site 로 만들기 위해 적당한 템플릿을 찾다가  [MkDocs](https://www.mkdocs.org/)으로 정했다.
 

@@ -1,3 +1,4 @@
+[TOC]
 
 # The Silver Searchger a.k.a. ag
 

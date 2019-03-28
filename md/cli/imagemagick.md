@@ -1,3 +1,4 @@
+[TOC]
 
 
 cli 로 이미지 수정을 할 수 있는 [ImageMagick](https://www.imagemagick.org/)의 사용 사례

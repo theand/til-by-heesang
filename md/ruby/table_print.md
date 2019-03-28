@@ -1,3 +1,5 @@
+[TOC]
+
 
 # table_print gem
 

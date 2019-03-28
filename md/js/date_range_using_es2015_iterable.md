@@ -1,3 +1,5 @@
+[TOC]
+
 # ES2015 iterable 로 date range 만들어보기
 
 iterable protocol은 객체를 `for..of` 같은 구문에서 사용할 수 있게 해준다. 객체에 `Symbol.iterator` 을 이름으로 하는 메소드를 구현하면 이 프로토콜을 만족한다.

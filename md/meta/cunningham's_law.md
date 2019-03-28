@@ -1,3 +1,5 @@
+[TOC]
+
 # 커닝햄의 법칙
 
 >the best way to get the right answer on the internet is not to ask a question; it's to post the wrong answer.

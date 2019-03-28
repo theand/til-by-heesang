@@ -1,5 +1,26 @@
 site_name: Heesang's TIL
+site_author: Heesang Chae
+copyright: Heesang Chae
+
+repo_url: https://github.com/theand/til-by-heesang/
+edit_uri: blob/master/md/
+
 docs_dir: md
 nav:
-        - 'By Categories': index.md
-theme: readthedocs
+  - 'By Categories': index.md
+
+theme:
+  name: readthedocs
+  highlightjs: true
+
+markdown_extensions:
+  - nl2br
+  - sane_lists
+  - toc:
+      permalink: false
+
+extra_css:
+  - assets/css/til.css
+  - assets/css/darcula.min.css
+extra_javascript:
+  - assets/js/til.js

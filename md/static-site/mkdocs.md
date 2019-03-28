@@ -40,6 +40,6 @@ git mv coding-quiz/ index.md jetbrains/ lecture/ macos/ vuejs/ build.py cli/ jav
 mkdocs build --clean
 ```
 
-6. 나는 다행히 예전에, [build.py](../builld.py)라는 스크립트를 만들어서 [index.md](../index.md)를 생성하도록 해두었었기 때문에 이번에 작업할때 TIL 문서 인덱스를 생성하는 과정을 스킵할 수 있었다.
+6. 나는 다행히 예전에, [build.py](../build.py)라는 스크립트를 만들어서 [index.md](../index.md)를 생성하도록 해두었었기 때문에 이번에 작업할때 TIL 문서 인덱스를 생성하는 과정을 스킵할 수 있었다.
 
 여기까지가 md 로 작업된 문서들을 정적 사이트로 옮기는 기본 사용법이었다. 이 정적 사이트를 퍼블리싱하는 것은 별도의 이슈이므로 여기에서 일단 마무리.

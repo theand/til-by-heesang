@@ -4,9 +4,8 @@
 ## 증상
 n년째 Tomcat 8.x, 8.5.x 에서 잘 돌아가던 어플리케이션이 있었는데 어느날 갑자기 어플리케이션을 실행하고 있다보니 아래와 같은 예외를 발생하고 있었다.
 
-```
-java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
-```
+>java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
+
 
 
 ## 원인
@@ -21,9 +20,7 @@ java.lang.IllegalArgumentException: Invalid character found in the request targe
 
 좀더 자세한 변경 히스토리를 찾아보니 다음과 같다.
 
-```
-62273: Implement configuration options to work-around specification non-compliant user agents (including all the major browsers) that do not correctly %nn encode URI paths and query strings as required by RFC 7230 and RFC 3986. (markt)
-```
+>62273: Implement configuration options to work-around specification non-compliant user agents (including all the major browsers) that do not correctly %nn encode URI paths and query strings as required by RFC 7230 and RFC 3986. (markt)
 
 [해당 이슈티켓](https://bz.apache.org/bugzilla/show_bug.cgi?id=62273)에 따르면 `9.0.8`, `8.5.31`, `8.0.52` 버전부터 적용되었다고 한다. `8.5.31`의 경우 2018-05-03에 릴리즈 되었다.
 

@@ -48,7 +48,6 @@ n년째 Tomcat 8.x, 8.5.x 에서 잘 돌아가던 어플리케이션이 있었�
 
 ref.
 
--
 - https://cwiki.apache.org/confluence/display/TOMCAT/Encoding+and+URIs
 - https://stackoverflow.com/questions/41053653/tomcat-8-is-not-able-to-handle-get-request-with-in-query-parameters
 - https://stackoverflow.com/questions/50361171/how-to-allow-character-in-urls-for-tomcat-8-5

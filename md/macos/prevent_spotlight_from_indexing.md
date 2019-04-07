@@ -8,3 +8,21 @@
 ```
 find . -type d -name "node_modules" -exec touch "{}/.metadata_never_index" \;
 ```
+
+## npm 인스톨할때 인덱싱을 막도록 자동으로 해당 파일 생성하기
+
+npm install 을 하고 나서 바로 `.metadata_never_index` 파일을 만들도록 하는 쉘 함수.
+
+```
+function npm_install {
+    if [ -f yarn.lock ]; then
+        yarn install $@
+    else
+        npm install $@
+    fi
+    touch ./node_modules/.metadata_never_index
+}
+alias i=npm_install
+```
+
+출처 : https://twitter.com/Herschel_R/status/1113095592559984641

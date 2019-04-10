@@ -21,9 +21,6 @@ blockquote {
 
 .utterances {
   display: none;
-  /* position: -webkit-sticky; */
-  /* position: sticky; */
-  /* bottom: 0; */
   margin-left: 310px;
 }
 

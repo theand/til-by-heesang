@@ -19,6 +19,6 @@ blockquote {
 
 .utterances {
   position: sticky;
-  top: 1030px;
+  bottom: 0;
   margin-left: 360px;
 }

@@ -22,3 +22,7 @@ blockquote {
   bottom: 0;
   margin-left: 360px;
 }
+
+.wy-body-for-nav{
+  overflow: visible;
+}

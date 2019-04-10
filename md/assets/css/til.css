@@ -18,12 +18,16 @@ blockquote {
 
 
 .utterances {
-  /* position: -webkit-sticky;
-  position: sticky;
-  bottom: 0;
-  margin-left: 360px; */
+  /* position: -webkit-sticky; */
+  /* position: sticky; */
+  /* bottom: 0; */
+  margin-left: 360px;
+}
+
+.utterances-frame{
+  position: relative;
 }
 
 html, .wy-body-for-nav{
-  /* overflow: visible; */
+  overflow: visible;
 }

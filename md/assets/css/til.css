@@ -17,6 +17,8 @@ blockquote {
 
 
 
+/* for utterances */
+
 .utterances {
   display: none;
   /* position: -webkit-sticky; */
@@ -31,4 +33,8 @@ blockquote {
 
 html, .wy-body-for-nav{
   overflow: visible;
+}
+
+.wy-nav-content-wrap {
+  background: #fcfcfc;
 }

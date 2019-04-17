@@ -103,3 +103,47 @@ star 수도 엄청 많고, README 구성도 빡세게 되어 있다. 근데 너�
 https://github.com/karek314/macOS-home-call-drop
 
 mac OS 설정 중에 애플 서버로 호출이 발생하는 부분을 대부분 블락하는 스크립트로 보인다.
+
+## mac_os
+
+https://github.com/bkuhlmann/mac_os
+
+https://github.com/bkuhlmann/mac_os-config
+
+
+## formation
+
+https://github.com/minamarkham/formation
+
+
+## macOS-Security-and-Privacy-Guide
+
+https://github.com/drduh/macOS-Security-and-Privacy-Guide
+
+설치 스크립트는 아니고 보안 설정 가이드.
+
+## hypergenesis
+
+https://github.com/mattmcmanus/hypergenesis
+
+# 경과
+
+위 후보군들을 살펴보았을때,
+
+- Homebrew(with cask)는 기본적으로 사용하는데, `Brewfile` 을 사용하는 경우는 없었고, 보통은 쉘 스크립트에서 배열로 선언해서 설치하고, 가끔 `Brewfile` 포맷의 멀티라인 문자열을 `brew bundle` 으로 넘겨서 설치하는 경우는 있었다.
+- 맥앱스토어 프로그램은 대체로 `mas` 로 설치
+- mac OS 설정은 거의 대부분이 mathias 의 dotfiles 의 설정파일을 기반으로 하여 각 작성자 취향에 맞게 값을 고치거나 한 정도였다.
+- dotfile 관리하는 건 개별 저장소를 별도로 유지하거나 rcm 등을 사용하거나 하는데 각각이 너무 달라서 참고하
+- python/node/ruby 등의 환경은 version manager 를 설치하기도 하는데, 너무 경우의 수가 많다.
+
+
+내 요구사항에 맞게 아래와 같이 진행하고 있다.
+
+- script/bootstrap
+- mac OS  업데이트, xcode 설치
+- mac OS 각종 설정은 mathiasdotfiles 의 .macos 에 여기저기서 모은 설정을 모두 통합.
+- strap 으로 homebrew 들 설치하고..
+- `Brewfile` 으로 필요한 프로그램들 설치.
+- bash 는 그대로 가고, bash-it 을 써보기로 함
+- vim 은 neovim + vimr 을 설치하기로 함. 아마 spacevim 까지.
+- 그다음에는 dropbox 동기화 때문에 수동으로 진행 필요하다.

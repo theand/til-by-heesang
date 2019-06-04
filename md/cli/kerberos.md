@@ -55,3 +55,28 @@ kdestroy -a
 ```
 
 인증되어 있는 티켓 정보를 모두 제거한다.
+
+### 키체인에 저장된 암호 업데이트하기
+
+명시적인 옵션은 잘 찾질 못했고, 이 방법이 제일 간단한 것 같다.
+
+```
+To initialize Keychain entries for your Kerberos principal(s) in 10.6, the simplest method is to run kinit with no attached tty, e.g.:
+
+    echo | kinit [principal]
+
+or
+
+    kinit [principal] < /dev/null
+```
+
+그래서 키체인을 초기화하고 새로 저장하는 것도 한번에 할 수 있도록 이런 alias를 만들어두었다.
+
+```
+alias krenew="echo | kinit --keychain [MY_ID]"
+```
+
+
+
+
+참고 : https://gist.github.com/jrk/204278

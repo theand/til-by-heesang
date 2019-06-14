@@ -4,7 +4,7 @@
 
 ## 개요
 
-옛날에는 XJR a.k.a. AJAX를 썼다. 쌩으로 쓰긴 번거로우니 jQuery 같은걸 이용했다. 비동기 호출을 편하게 쓸 수 있었고, 새로운 브라우저와 구닥다리 브라우저를 모두 지원할 수 있었다.
+옛날에는 XHR a.k.a. AJAX를 썼다. 쌩으로 쓰긴 번거로우니 jQuery 같은걸 이용했다. 비동기 호출을 편하게 쓸 수 있었고, 새로운 브라우저와 구닥다리 브라우저를 모두 지원할 수 있었다.
 
 `Fetch` API는 비동기 네트웍 요청을 표준하며 만들어졌고, `Promise` 기반으로 구성된다.
 
@@ -63,12 +63,61 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
   .then(json => console.log(json))
 ```
 
-
-
-## 참고
+참고
 
 - https://fetch.spec.whatwg.org/
 - https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 - https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 - https://medium.freecodecamp.org/understanding-the-fetch-api-a7d4c08c2a7
 - https://github.com/github/fetch
+
+
+
+## await fetch
+
+`fetch()` 의 리턴값은 promise 라서 콜백 함수 안에서 쓰거나 해야하는데, 리턴값을 동기 코드의 리턴 값을 쓰는것처럼 바로 쓰려면 `await` 연산자를 이용할 수 있다.
+
+`await`은 promise를 기다리게 해준다. 그리고 `async` 함수 안에서만 사용할 수 있다.
+
+그냥 짧은 요청을 테스트해보는 정도에서는 아래와 같은 코드 조각을 활용할 수 있다.
+
+```javascript
+
+(async () => {
+  let response = await fetch(api);
+  let body = await response.json();
+  console.log(body.data);
+})();
+```
+
+위 섹션에서 사용한 예제코드는 아래와 같이 옮길 수 있다.
+
+
+```javascript
+fetch('https://jsonplaceholder.typicode.com/posts', {
+    //디폴트 옵션에 * 표시 있음.
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+      // "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    body: JSON.stringify({ // body data type must match "Content-Type" header
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    }),
+  })
+  .then(response => response.json())
+  .then(json => console.log(json))
+```
+
+
+참고
+
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function

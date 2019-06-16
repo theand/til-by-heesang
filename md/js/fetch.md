@@ -94,26 +94,13 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
 
 
 ```javascript
-fetch('https://jsonplaceholder.typicode.com/posts', {
-    //디폴트 옵션에 * 표시 있음.
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, cors, *same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-      // "Content-Type": "application/x-www-form-urlencoded",
-    },
-    redirect: "follow", // manual, *follow, error
-    referrer: "no-referrer", // no-referrer, *client
-    body: JSON.stringify({ // body data type must match "Content-Type" header
-      title: 'foo',
-      body: 'bar',
-      userId: 1
-    }),
-  })
-  .then(response => response.json())
-  .then(json => console.log(json))
+(async () => {
+
+  let response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+  let body = await response.json();
+  console.log(body)
+
+})();
 ```
 
 

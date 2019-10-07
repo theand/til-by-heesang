@@ -41,7 +41,7 @@ operand comparison_operator ALL (subquery)
 SELECT s1 FROM t1 WHERE s1 > ALL (SELECT s1 FROM t2);
 ```
 
-- `ANY`와 `SOME`과 마찬가지로 `ALL`도 낯설었는데, `NOT IN`은 `<> ALL`에 대한 alias 라는 설명을 보고 보니 역시 종종 사용해왔던 조건이었다.
+- `ANY`와 `SOME`과 마찬가지로 `ALL`도 낯설었는데, `NOT IN`은 `<> ALL`에 대한 alias 라는 설명을 보고 보니 역시 종종 사용해왔던 조건이었다는 걸 알았다.
 
 
 # 비고

@@ -19,6 +19,7 @@ select * from sqlite_sequence;
 update sqlite_sequence set seq=0 where name=`TABLE`;
 ```
 
+
 출처 :
 - https://gist.github.com/rainyear/6348896
 - https://sqlite.org/lang_delete.html

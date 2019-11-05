@@ -25,8 +25,19 @@ Java
 >long: The long data type is a 64-bit two's complement integer. The signed long has a minimum value of -2^63 and a maximum value of 2^63-1. In Java SE 8 and later, you can use the long data type to represent an unsigned 64-bit long, which has a minimum value of 0 and a maximum value of 2^(64-1). Use this data type when you need a range of values wider than those provided by int.
 
 
-그래서 하나는 Integer 로 매핑되고, 하나는 Long 으로 매핑된 것이었따.
+그래서 하나는 Integer 로 매핑되고, 하나는 Long 으로 매핑된 것이었다.
+
+추가:
+
+정확히는 MySQL JDBC 드라이버에서 타입을 전환하는 것이었고, 위와 같이 일일이 최대값 범위를 확인할 필요 없이 드라이버 명세를 보면 되는 일이었다.
+
+```
+INT,INTEGER[(M)] [UNSIGNED]	INTEGER [UNSIGNED]	java.lang.Integer, if UNSIGNED java.lang.Long
+```
+
+
 
 참고
 - https://nexladder.com/blog/what-does-int11-means-in-mysql/
 - https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
+- https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-type-conversions.html

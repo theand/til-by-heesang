@@ -14,3 +14,18 @@ select Person.FirstName, Person.LastName, Address.City, Address.State
 from Person left join Address on Address.PersonId = Person.PersonId
 ;
 ```
+
+# 176. Second Highest Salary
+
+https://leetcode.com/problems/second-highest-salary/
+
+```
+select
+(
+  select distinct salary
+  from Employee
+  order by Salary desc
+  limit 1 offset 1
+) as SecondHighestSalary
+;    
+```

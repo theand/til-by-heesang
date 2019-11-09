@@ -29,3 +29,14 @@ select
 ) as SecondHighestSalary
 ;    
 ```
+
+# 181. Employees Earning More Than Their Managers
+
+https://leetcode.com/problems/employees-earning-more-than-their-managers/
+
+```
+select
+name as Employee
+from employee e
+where salary > (select salary from employee m where e.managerId = m.id)
+```

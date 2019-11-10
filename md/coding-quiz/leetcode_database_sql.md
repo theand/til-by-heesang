@@ -40,3 +40,14 @@ name as Employee
 from employee e
 where salary > (select salary from employee m where e.managerId = m.id)
 ```
+
+# 182. Duplicate Emails
+
+https://leetcode.com/problems/duplicate-emails/
+
+```
+select Email
+from Person
+group by Email
+having count(Email) > 1;
+```

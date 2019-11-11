@@ -51,3 +51,14 @@ from Person
 group by Email
 having count(Email) > 1;
 ```
+
+# 183. Customers Who Never Order
+
+https://leetcode.com/problems/customers-who-never-order/
+
+```
+select Name as Customers
+from Customers
+where Id not in (select CustomerId from Orders group by CustomerId);
+
+```

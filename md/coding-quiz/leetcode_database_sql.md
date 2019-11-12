@@ -62,3 +62,19 @@ from Customers
 where Id not in (select CustomerId from Orders group by CustomerId);
 
 ```
+
+# 196. Delete Duplicate Emails
+
+https://leetcode.com/problems/delete-duplicate-emails/
+
+```
+delete from Person
+where
+    Id not in ( select *
+        from ( select min(id) as smallestId
+            from Person
+            group by Email
+        ) small
+    )
+
+```

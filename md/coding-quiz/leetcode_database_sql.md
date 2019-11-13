@@ -78,3 +78,14 @@ where
     )
 
 ```
+
+
+# 197. Rising Temperature
+
+https://leetcode.com/problems/rising-temperature/
+
+```
+select Id
+from Weather a
+where Temperature > (select Temperature from Weather b where b.RecordDate = DATE_SUB(a.RecordDate, interval 1 day))
+```

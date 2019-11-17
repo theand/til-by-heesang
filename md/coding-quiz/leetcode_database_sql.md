@@ -89,3 +89,15 @@ select Id
 from Weather a
 where Temperature > (select Temperature from Weather b where b.RecordDate = DATE_SUB(a.RecordDate, interval 1 day))
 ```
+
+
+# 595. Big Countries
+
+https://leetcode.com/problems/big-countries/
+
+```
+select name, population, area
+from World
+where area > 3000000 or population > 25000000
+
+```

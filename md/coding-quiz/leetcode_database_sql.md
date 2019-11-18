@@ -101,3 +101,24 @@ from World
 where area > 3000000 or population > 25000000
 
 ```
+
+
+# 596. Classes More Than 5 Students
+
+https://leetcode.com/problems/classes-more-than-5-students/
+
+```
+select class
+from courses
+group by class
+having count(distinct student) >= 5
+```
+
+# 620. Not Boring Movies
+
+https://leetcode.com/problems/not-boring-movies/
+
+```
+
+
+```

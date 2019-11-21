@@ -127,3 +127,14 @@ order by rating desc
 ;
 
 ```
+
+
+# 627. Swap Salary
+
+https://leetcode.com/problems/swap-salary/
+
+```
+update salary
+set sex = if(sex='f', 'm', 'f')
+;
+```

@@ -166,3 +166,25 @@ order by id asc
 ;
 
 ```
+
+
+
+https://leetcode.com/problems/department-highest-salary/
+
+```
+
+select
+  d.Name as Department,
+  e.Name as Employee,
+  m.maxSalary as Salary
+from
+  (
+  select
+  DepartmentId,
+  max(Salary) as maxSalary
+  from Employee
+  group by DepartmentId
+  ) m join Department d on m.DepartmentId = d.Id
+  join Employee e on m.maxSalary = e.Salary and e.DepartmentId = m.DepartmentId
+;
+```

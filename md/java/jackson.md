@@ -37,11 +37,6 @@ class User{
 >"user" is translated to "user" (unchanged)
 >"User" is translated to "user"
 >"USER" is translated to "user"
->"_user" is translated to "user"
->"_User" is translated to "user"
->"__user" is translated to "_user" (the first of two underscores was removed)
->"user__name" is translated to "user__name" (unchanged, with two underscores)
-
 
 
 참고
@@ -49,3 +44,47 @@ class User{
 - http://fasterxml.github.io/jackson-databind/javadoc/2.10/com/fasterxml/jackson/databind/annotation/JsonNaming.html
 - http://fasterxml.github.io/jackson-databind/javadoc/2.10/com/fasterxml/jackson/databind/PropertyNamingStrategy.html
 - http://fasterxml.github.io/jackson-databind/javadoc/2.10/com/fasterxml/jackson/databind/PropertyNamingStrategy.SnakeCaseStrategy.html
+
+# inner class 매핑할때 주의사항
+
+```
+{
+  "profile_id" : 1
+  "account":  {
+    "name": "John"
+  }
+}
+```
+
+위와 같은 json 을 POJO로 아래와 같이 매핑하려고 했더니  JsonMappingException 이 발생했다.
+
+```
+public class User{
+  protected Long profileId;
+  protected Account account;  
+
+  public class Account{
+    protected String name;
+  }
+
+}
+
+```
+
+찾아보니 inner class는 static 이어야 한다고 한다. 아래와 같이 고치니 해결이 되었다.
+
+```
+public class User{
+  protected Long profileId;
+  protected Account account;  
+
+  public static class Account{
+    protected String name;
+  }
+
+}
+
+```
+
+참고
+- https://stackoverflow.com/questions/7625783/jsonmappingexception-no-suitable-constructor-found-for-type-simple-type-class

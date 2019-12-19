@@ -69,3 +69,12 @@ ref.
 - https://github.com/ggreer/the_silver_searcher/issues/1210
 - https://github.com/ggreer/the_silver_searcher/issues/1251
 - https://github.com/ggreer/the_silver_searcher/issues/111
+
+# 지정한 확장자를 대상으로 검색 범위를 한정하고 싶다
+
+`*.java`나 `*.js`와 같이 특정 확장자를 가진 파일에 대해서만 검색을 하고 싶다면 `-G` 옵션을 사용하면 된다.
+
+```
+ag klass -G java
+ag klass -G js
+```

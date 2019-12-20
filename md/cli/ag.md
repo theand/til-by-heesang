@@ -69,6 +69,7 @@ ref.
 - https://github.com/ggreer/the_silver_searcher/issues/1210
 - https://github.com/ggreer/the_silver_searcher/issues/1251
 - https://github.com/ggreer/the_silver_searcher/issues/111
+- https://github.com/ggreer/the_silver_searcher/wiki/Advanced-Usage
 
 # 지정한 확장자를 대상으로 검색 범위를 한정하고 싶다
 
@@ -78,3 +79,39 @@ ref.
 ag klass -G java
 ag klass -G js
 ```
+
+단, 위와 같이하면 경로명에 해당 키워드가 들어간 경우에도 검색범위에 포함이 된다. 그러므로 정확히 하려면 아래와 같이 정규표현식 패턴으로 넘겨야 한다.
+
+```
+ag klass -G  '\.java$'
+ag klass -G  '\.js$'
+```
+
+그런데 위와 같이 일일이 정규식을 넘겨서 사용하려면 너무 사용성이 떨어지기 때문에 현재 가장 최신 버전인 2.2.0 버전에 알려진 확장자를 지원하는 옵션이 추가되었다.
+
+```
+ag klass --java
+ag klass --js
+```
+
+지원하는 확장자 목록을 보고 싶으면 아래 명령을 사용하면 된다.
+
+
+```
+ag --list-file-types
+```
+
+그러면 위의 예제에서 사용한 `java`와 `js`에 대해서는 아래와 같은 내용을 확인할 수 있다.
+
+```
+  --java
+      .java  .properties
+
+  --js
+      .es6  .js  .jsx  .vue
+
+```
+
+
+참고
+- https://unix.stackexchange.com/questions/343570/how-do-i-use-ag-to-look-for-text-in-files-with-certain-extensions

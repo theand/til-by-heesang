@@ -115,3 +115,11 @@ ag --list-file-types
 
 참고
 - https://unix.stackexchange.com/questions/343570/how-do-i-use-ag-to-look-for-text-in-files-with-certain-extensions
+
+# 키워드를 포함하고 있는 파일들의 목록만 보고 싶다.
+
+기본 검색으로 하면 매칭되는 파일 내용까지 같이 보여주기 때문에 검색결과가 많을때는 찾아보기 힘들수가 있다. `-l` 옵션을 사용하면 파일 목록만 보여준다.
+
+```
+ag klass --java -l
+```

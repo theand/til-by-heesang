@@ -301,3 +301,15 @@ $ curl -X GET https://jsonplaceholder.typicode.com/users | jq '.[].name'
 "Glenna Reichert"
 "Clementina DuBuque"
 ```
+
+# 빌트인 함수로 json 문자열 파싱하기
+
+json 응답 중에 텍스트로 변환된 json 값이 있을때 이를 json 으로 파싱해서 다시 조회하기
+
+json 텍스트 <-> json 을 변환할 수 있는 `fromjson`과 `tojson` 빌트인함수가 있다.
+
+아래와 같이 사용할 수 있다.
+
+```
+curl -X GET "https://api.brunch.co.kr/v4/article/@@HaI/590" | jq '.data.article.content | fromjson | .cover'
+```

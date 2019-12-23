@@ -24,3 +24,4 @@ extra_css:
   - assets/css/darcula.min.css
 extra_javascript:
   - assets/js/til.js
+  - assets/js/linkify-plus.js

@@ -2,7 +2,7 @@
 
 # author와 committer는 무슨 차이인가?
 
-[List of all author](./list of all author.md)를 찾아보았을때 author와 committer가구분되는 개념으로 등장하길래 뭐가 다른지 찾아보았다.
+[List of all author](./list_of_all_author.md)를 찾아보았을때 author와 committer가구분되는 개념으로 등장하길래 뭐가 다른지 찾아보았다.
 
 - author : 코드를 원래 작성한 사람
 - committer : author를 대신해서 그 코드를 커밋한 사람

@@ -19,3 +19,9 @@
 
 ps.
 year in pixel 차트는 [waitbutwhy](https://waitbutwhy.com)의 [Life in weeks](https://waitbutwhy.com/2014/05/life-weeks.html) 캘린더나 [Simone Giertz](https://www.youtube.com/simonegiertz)의 [The Every Day Calendar](https://www.kickstarter.com/projects/simonegiertz/the-every-day-calendar)와 시각화 발상의 근본은 동일한 것 같다.
+
+# 2019 Year in Pixel of til
+
+위에서 구한 템플릿으로 몇개의 프로젝트를 트래킹하다가 중간에 다 드롭되고 남은 것은 til 하나였다.  2019년 til 진행현황은 아래와 같다.
+
+![2019_year_in_pixel_til.jpg](/.2019_year_in_pixel_til.jpg)

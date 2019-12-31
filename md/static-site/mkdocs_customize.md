@@ -63,3 +63,17 @@ markdown_extensions:
   - toc:
       permalink: false
 ```
+
+
+## 일반 텍스트로 적혀있는 웹주소 패턴을 자동으로 앵커 링크로 변환하기
+
+마크다운 스펙에서 링크를 걸려면 마크다운 링크 문법을 써야하는데, 나는 문장 안에서 링크를 걸어야할때가 아니면 일일이 그 문법을 쓰기 귀찮아서 그냥 주소만 남겨놓곤 한다. 주로 참고링크를 그렇게 남긴다. 다만, netlify 에 배포를 하고 나서 보는 TIL 웹페이지에서 앵커 링크가 아닌 일반 텍스트로 URL이 표시되어 있으니 내가 필요할때도 주소를 일일이 복사하는게 또 귀찮은 일이어서, 일반텍스트로 적어놓은 웹주소를 자동으로 변환하는 플러그인 같은걸 찾고 싶었다.
+
+MkDocs 의 Plugin과 Recipes를 찾아봐도 마땅한 것이 없었고, 직접 JS로 짜볼까 해서 검색을 해보니 SO에서 알려주는 정규표현식이나 이런게 잘되는 테스트하는 것도 영 번거로운 일이어서, 마침 사용하고 있던 userscript 코드의 원본 소스가 어딜까 찾아보니 최근까지도 업데이트가 되고 있어서 `linkify-plus.user.js` 를 이용해서 적용해보니 한번에 원하는대로 작동이 되었다.
+
+
+참고
+- https://github.com/mkdocs/mkdocs/wiki/MkDocs-Recipes
+- https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins
+- https://stackoverflow.com/questions/37684/how-to-replace-plain-urls-with-links
+- https://arantius.com/misc/greasemonkey/linkify-plus.user.js

@@ -18,7 +18,7 @@ blockquote {
 
 
 /* for utterances */
-@media screen and (min-width: 1400px){
+/* @media screen and (min-width: 1400px){
   .utterances {
     display: none;
     margin-left: 310px;
@@ -30,9 +30,9 @@ blockquote {
     display: none;
     margin-left: 2em;
   }
-}
+} */
 
-.utterances-frame{
+/* .utterances-frame{
   position: relative;
 }
 
@@ -42,4 +42,4 @@ html, .wy-body-for-nav{
 
 .wy-nav-content-wrap {
   background: #fcfcfc;
-}
+} */

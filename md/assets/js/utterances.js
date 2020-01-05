@@ -19,7 +19,7 @@ html, .wy-body-for-nav{
   background: #fcfcfc;
 }
 
-@media screen and (min-width: 1400px){
+@media screen and (min-width: 769px){
   .utterances {
     min-height: 268px;
     display: block;
@@ -41,7 +41,7 @@ addGlobalStyle(utterancesStyle);
 setTimeout(() => {
   if( document.querySelector(".utterances") ){
     const dynamicStyle = `
-@media screen and (min-width: 1400px){
+@media screen and (min-width: 769px){
   .utterances {
     top: ${document.querySelector(".wy-nav-content").scrollHeight}px;
   }

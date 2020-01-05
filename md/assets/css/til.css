@@ -14,32 +14,3 @@ blockquote {
   margin-bottom: 16px;
   margin-top: 0;
 }
-
-
-
-/* for utterances */
-/* @media screen and (min-width: 1400px){
-  .utterances {
-    display: none;
-    margin-left: 310px;
-  }
-}
-
-@media screen and (max-width: 768px){
-  .utterances {
-    display: none;
-    margin-left: 2em;
-  }
-} */
-
-/* .utterances-frame{
-  position: relative;
-}
-
-html, .wy-body-for-nav{
-  overflow: visible;
-}
-
-.wy-nav-content-wrap {
-  background: #fcfcfc;
-} */

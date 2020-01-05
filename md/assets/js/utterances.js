@@ -31,7 +31,7 @@ html, .wy-body-for-nav{
   .utterances {
     min-height: 268px;
     display: block;
-    margin-left: 2em;
+    margin-left: 0em;
   }
 }
 `;

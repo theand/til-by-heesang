@@ -142,6 +142,20 @@ source : https://twitter.com/umaar/status/804703313430278145
 
 비고 : 지원하는 필터 목록을 한번 찾아봐야겠다.
 
+
+## 네트웍 패널의 필터 검색에서 이미지, CSS, JS 등의 리소스는 빼고 보기
+
+
+`mime-type` 으로 필터링하면 될듯
+
+```
+-mime-type:image/jpg -mime-type:image/jpeg  -mime-type:image/png -mime-type:image/gif -mime-type:image/x-icon -mime-type:text/javascript -mime-type:application/javascript  -mime-type:text/css -mime-type:application/octet-stream
+
+```
+
+source : https://developers.google.com/web/tools/chrome-devtools/network/reference#filter
+
+
 ## text-shadow 에디터
 
 요약 : 스타일 영역에서 `text-shadow` 프로퍼티의 값 왼쪽 아이콘을 클릭하면 컬러피커처럼  섀도우를 조절할 수 있는 에디터가 뜸.
